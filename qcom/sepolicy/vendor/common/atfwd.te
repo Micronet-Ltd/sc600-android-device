@@ -6,6 +6,24 @@ init_daemon_domain(atfwd)
 allow atfwd self:{socket qipcrtr_socket } create_socket_perms;
 allowxperm atfwd self:{ socket qipcrtr_socket } ioctl msm_sock_ipc_ioctls;
 
+allow atfwd vendor_persist_mmi_file:dir search;
+allow atfwd mnt_vendor_file:dir search;
+allow atfwd vendor_persist_mmi_file:file {read open};
+
+#add SElinux in AT QFCT
+allow atfwd mnt_vendor_file:dir search;
+allow atfwd vendor_persist_mmi_file:dir search;
+allow atfwd vendor_persist_mmi_file:file {read open getattr};
+
+allow atfwd vendor_shell_exec:file execute_no_trans;
+allow atfwd sysfs_battery_supply:dir search;
+allow atfwd sysfs_battery_supply:file rw_file_perms;
+allow atfwd sysfs:file {read open getattr};
+allow atfwd proc:file {read open getattr};
+allow atfwd proc_meminfo:file {read open getattr};
+allow atfwd quec_prop:property_service set;
+allow atfwd quec_prop:file {read open getattr};
+
 binder_call(atfwd, system_app);
 
 r_dir_file(atfwd, sysfs_ssr);

@@ -1,6 +1,7 @@
 #Define the logging device type
 type diag_device, dev_type, mlstrustedobject;
 type smem_log_device, dev_type;
+type sysfs_quec, sysfs_type, fs_type, mlstrustedobject;
 
 #Define the hsic device
 type hsic_device, dev_type;

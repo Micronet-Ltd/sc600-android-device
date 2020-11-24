@@ -613,8 +613,7 @@ PRODUCT_PACKAGES := \
     SnapdragonLauncher \
     a4wpservice \
     wipowerservice \
-    Mms \
-    QtiDialer
+    Mms
 
 PRODUCT_PACKAGES += $(ALSA_HARDWARE)
 PRODUCT_PACKAGES += $(ALSA_UCM)

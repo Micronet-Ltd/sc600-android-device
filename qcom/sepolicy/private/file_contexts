@@ -53,6 +53,7 @@
 /system/bin/qvrservice                          u:object_r:qvrd_exec:s0
 /system/bin/wfdservice                          u:object_r:wfdservice_exec:s0
 /system/bin/mmi                                 u:object_r:vendor_mmi_sys_exec:s0
+/system/bin/QuecServer                                 u:object_r:vendor_mmi_sys_exec:s0
 /system/bin/mmi_diag                            u:object_r:vendor_mmi_sys_exec:s0
 /system/bin/perfservice                         u:object_r:perfservice_exec:s0
 /system/bin/mirrorlinkserver                    u:object_r:mirrorlink_exec:s0

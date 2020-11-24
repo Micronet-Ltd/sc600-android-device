@@ -32,6 +32,11 @@ service fastmmi /system/bin/mmi
     group root
     disabled
 
+service quecserver /system/bin/QuecServer
+    user root
+    group root
+    disabled
+    
 service vendor.mmid /vendor/bin/mmid
     user root
     group root
@@ -86,6 +91,7 @@ on mmi && property:ro.bootmode=ffbm-01
     #mkdir for factory data files.
     mkdir /mnt/vendor/persist/FTM_AP 0750 system system
 
+		start quecserver
     start fastmmi
     ## start qcom-post-boot to set the misc partition path property value
     start qcom-post-boot

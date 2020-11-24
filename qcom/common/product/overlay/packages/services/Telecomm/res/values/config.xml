@@ -34,11 +34,11 @@
 <resources>
 
     <!-- Package name for the default in-call UI and dialer [DO NOT TRANSLATE] -->
-    <string name="ui_default_package" translatable="false">org.codeaurora.dialer</string>
+    <!-- <string name="ui_default_package" translatable="false">org.codeaurora.dialer</string> -->
 
     <!-- Class name for the default in-call UI Service [DO NOT TRANSLATE] -->
-    <string name="incall_default_class" translatable="false">com.android.incallui.InCallServiceImpl</string>
+    <!-- <string name="incall_default_class" translatable="false">com.android.incallui.InCallServiceImpl</string> -->
 
     <!-- Class name for the default main dialer activity [DO NOT TRANSLATE] -->
-    <string name="dialer_default_class" translatable="false">com.android.dialer.DialtactsActivity</string>
+    <!-- <string name="dialer_default_class" translatable="false">com.android.dialer.DialtactsActivity</string> -->
 </resources>

@@ -38,6 +38,8 @@ get_prop(radio, vendor_radio_prop)
 
 binder_call(radio, hal_imsrtp)
 allow radio hal_imsrtp_hwservice:hwservice_manager find;
+
+allow radio omadm_service_service:service_manager add;
 # permissions for IMS-ConnectionmanagerTestApp
 userdebug_or_eng(`
   allow radio hal_imsrcsd_hwservice:hwservice_manager find;
@@ -49,3 +51,5 @@ userdebug_or_eng(`
 hal_client_domain(radio, hal_perf)
 
 get_prop(radio, qcom_ims_prop)
+
+get_prop(radio, vendor_camera_prop)

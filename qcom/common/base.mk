@@ -897,7 +897,7 @@ PRODUCT_PACKAGES := \
     a4wpservice \
     wipowerservice \
     Mms \
-    QtiDialer
+    Dmc
 
 ifeq ($(TARGET_HAS_LOW_RAM),true)
     DELAUN := Launcher3Go

@@ -30,6 +30,8 @@ neverallow untrusted_app diag_device:chr_file rw_file_perms;
 
 # for finding wbc_service
 allow untrusted_app wbc_service:service_manager find;
+allow  system_app sysfs_socinfo:file rw_file_perms;
+allow  priv_app sysfs_socinfo:file rw_file_perms;
 
 # for finding gba_auth_service
 allow untrusted_app gba_auth_service:service_manager find;

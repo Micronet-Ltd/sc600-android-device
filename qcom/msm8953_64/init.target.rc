@@ -71,7 +71,7 @@ on post-fs-data
     mkdir /persist/data/sfs 0700 system system
     mkdir /persist/data/tz 0700 system system
     mkdir /data/misc/dts 0770 media audio
-    mkdir /data/vendor/hbtp 0750 system system
+    #mkdir /data/vendor/hbtp 0750 system system #raynor:rm improveTouch
     mkdir /data/vendor/tloc 0700 system drmrpc
 
 
@@ -92,6 +92,7 @@ on init
     write /dev/stune/foreground/schedtune.colocate 0
     write /dev/stune/top-app/schedtune.colocate 1
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
+    chmod 0666 /sys/devices/soc0/select_image
 
 service qfp-daemon /system/vendor/bin/qfp-daemon
    class late_start
@@ -124,6 +125,13 @@ service vendor.qseecomd /vendor/bin/qseecomd
    class core
    user root
    group root
+
+#start for OMADM
+service dmclient /vendor/bin/dmclient
+    class late_start
+    user root 
+    group root radio net_raw net_admin inet sdcard_rw media_rw 
+    onrestart 
 
 #service aostlmd /system/bin/aostlmd
 #   class late_start
@@ -168,7 +176,7 @@ on boot
     chown system drmrpc /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch
     chown system drmrpc /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch_enable
     chown system drmrpc /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch
-    chown system system /sys/kernel/hbtp/display_pwr
+#    chown system system /sys/kernel/hbtp/display_pwr
 
 # Add a cpuset for the camera daemon
 # We want all cores for camera
@@ -246,11 +254,13 @@ service vendor.imsrcsservice /system/vendor/bin/imsrcsd
 on property:vendor.ims.DATA_DAEMON_STATUS=1
     restart vendor.ims_rtp_daemon
 
+#raynor--> rm improveTouch
 service hbtp /system/vendor/bin/hbtp_daemon
     class main
     user system
     group system
     disabled
+#-->raynor
 
 service ppd /system/vendor/bin/mm-pp-dpps
     class late_start
@@ -356,6 +366,7 @@ on boot
     chown system system /sys/class/leds/red/breath
     chown system system /sys/class/leds/red/delay_on
     chown system system /sys/class/leds/red/delay_off
+	chmod 0660 /sys/class/leds/red/brightness
     chown system system /sys/class/leds/green/blink
     chown system system /sys/class/leds/green/breath
     chown system system /sys/class/leds/green/delay_on

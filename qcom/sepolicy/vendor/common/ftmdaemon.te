@@ -1,0 +1,22 @@
+type ftmdaemon, domain;
+type ftmdaemon_exec, exec_type, vendor_file_type,file_type;
+
+# Started by init
+init_daemon_domain(ftmdaemon)
+
+userdebug_or_eng('
+permissive ftmdaemon;
+')
+#allow ftmdaemon self:capability dac_override;
+allow ftmdaemon diag_device:chr_file { read write open };
+allow ftmdaemon hal_bluetooth_qti:binder { transfer call };
+allow hwservicemanager ftmdaemon:binder transfer;
+allow hwservicemanager ftmdaemon:dir search;
+allow hwservicemanager ftmdaemon:file { read open };
+allow hwservicemanager ftmdaemon:process getattr;
+allowxperm ftmdaemon diag_device:chr_file ioctl IOCTL_KGSL_SHAREDMEM_FROM_PMEM;
+allow hal_bluetooth_qti ftmdaemon:binder call;
+
+allow ftmdaemon hwservicemanager_prop:file { read open getattr };
+allow ftmdaemon hwservicemanager:binder { call };
+allow ftmdaemon hal_bluetooth_hwservice:hwservice_manager { find };

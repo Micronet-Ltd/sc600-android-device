@@ -9,6 +9,8 @@ BOARD_AVB_SYSTEM_ROLLBACK_INDEX := 0
 BOARD_AVB_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
 endif
 
+PRODUCT_PROPERTY_OVERRIDES += persist.vendor.bluetooth.modem_nv_support=true
+
 TARGET_USES_AOSP := false
 TARGET_USES_AOSP_FOR_AUDIO := false
 TARGET_USES_QCOM_BSP := false
@@ -52,6 +54,7 @@ TARGET_USES_MEDIA_EXTENSIONS := true
 
 -include $(QCPATH)/common/config/qtic-config.mk
 
+PRODUCT_COPY_FILES += vendor/verizon/dmacc-init.txt:$(TARGET_COPY_OUT_VENDOR)/verizon/dmclient/init/dmacc-init.txt
 # media_profiles and media_codecs xmls for msm8953
 ifeq ($(TARGET_ENABLE_QC_AV_ENHANCEMENTS), true)
 PRODUCT_COPY_FILES += \
@@ -139,9 +142,35 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #FEATURE_OPENGLES_EXTENSION_PACK support string config file
 PRODUCT_COPY_FILES += \
         frameworks/native/data/etc/android.hardware.opengles.aep.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.opengles.aep.xml
-
 #Android EGL implementation
 PRODUCT_PACKAGES += libGLES_android
+
+$(call inherit-product-if-exists, vendor/verizon/dmclient/dmclient.mk)
+PRODUCT_PACKAGES += \
+VerizonDemo \
+dmclient \
+paltest \
+devdetail.test \
+connmo.test \
+devinfo.test \
+diagmon.test \
+palnettest \
+paladmintest \
+palbatterytest \
+palbuttonupdatetest\
+libcurl \
+curl \
+libmoconnmo \
+libmodcmo \
+libmodevdetail \
+libmodevinfo \
+libmodiagmon \
+libmodmacc \
+libmofumo \
+libmoscm \
+libpal \
+DMClientUpdate \
+DMBrowser
 
 # Audio configuration file
 -include $(TOPDIR)hardware/qcom/audio/configs/msm8953/msm8953.mk
@@ -220,7 +249,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/qcom/msm8953_64/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini \
     device/qcom/msm8953_32/WCNSS_wlan_dictionary.dat:persist/WCNSS_wlan_dictionary.dat \
-    device/qcom/msm8953_64/WCNSS_qcom_wlan_nv.bin:persist/WCNSS_qcom_wlan_nv.bin
+    device/qcom/msm8953_64/WCNSS_qcom_wlan_nv.bin:persist/WCNSS_qcom_wlan_nv.bin \
+    device/qcom/msm8953_64/quec_bt_tag_36.txt:persist/quec_bt_tag_36.txt
 
 PRODUCT_PACKAGES += \
     wpa_supplicant_overlay.conf \
@@ -276,6 +306,15 @@ PRODUCT_PACKAGES += \
 # Sensor HAL conf file
  PRODUCT_COPY_FILES += \
      device/qcom/msm8953_64/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
+
+PRODUCT_COPY_FILES += vendor/verizon/dmclient/platform/cacert/ca-bundle.crt:/system/etc/security/cacerts/ca-bundle.crt \
+		vendor/verizon/libomamo/scm/libs/libsqlite.so:/vendor/lib/drm/libsqlite.so \
+		vendor/verizon/libomamo/scm/libs/libsqlite64.so:/vendor/lib64/drm/libsqlite.so \
+		vendor/verizon/libomamo/scm/libs/libicuuc.so:/vendor/lib/libicuuc.so \
+		vendor/verizon/libomamo/scm/libs/libicuuc64.so:/vendor/lib64/libicuuc.so \
+		vendor/verizon/libomamo/scm/libs/libicui18n.so:/vendor/lib/libicui18n.so \
+		vendor/verizon/libomamo/scm/libs/libicui18n64.so:/vendor/lib64/libicui18n.so 
+
 
 # Vibrator
 PRODUCT_PACKAGES += \

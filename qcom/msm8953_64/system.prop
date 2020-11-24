@@ -202,7 +202,7 @@ persist.vendor.camera.display.umax=1920x1080
 persist.vendor.camera.display.lmax=1280x720
 
 #expose aux camera for below packages
-vendor.camera.aux.packagelist=org.codeaurora.snapcam
+vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.dialer,com.android.phone
 
 #set cutoff voltage to 3400mV
 ro.cutoff_voltage_mv=3400
@@ -221,3 +221,12 @@ ro.cutoff_voltage_mv=3400
 # network location provider is not functional
 ro.location.osnlp.package=com.google.android.gms
 ro.location.osnlp.region.package=
+
+#set device to certification mode when it set true
+persist.certification.mode=true
+
+#set screen rotate
+persist.demo.hdmirotates=true
+persist.panel.orientation=0
+
+persist.vendor.usb.config.extra=serial_cdev,diag

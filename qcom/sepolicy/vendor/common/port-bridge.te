@@ -10,7 +10,10 @@ userdebug_or_eng(`
 
 # Allow operations on different types of sockets
 allow port-bridge port-bridge:netlink_kobject_uevent_socket { create bind read };
-
+allow port-bridge mnt_vendor_file:dir {search write add_name };
+allow port-bridge mnt_vendor_file:file { write create open getattr setattr};
+allow port-bridge quec_prop:file { open read getattr };
+allow port-bridge quec_prop:property_service {set};
 allow port-bridge {
     # Allow operations on mhi transport
     mhi_device
@@ -23,6 +26,20 @@ allow port-bridge {
 # Allow write permissions for log file
 allow port-bridge port_bridge_data_file:file create_file_perms;
 allow port-bridge port_bridge_data_file:dir w_dir_perms;
-
+allow port-bridge modem_efs_partition_device:blk_file { read write open  };
+allow port-bridge block_device:dir { search };
 #access ipa sysfs node
 allow port-bridge sysfs_data:file r_file_perms;
+allow port-bridge {vendor_shell_exec vendor_toolbox_exec}:file execute_no_trans;
+allow port-bridge sysfs_socinfo:file rw_file_perms;
+allow port-bridge property_socket:sock_file { read write };
+allow port-bridge init:unix_stream_socket { connectto };
+allow port-bridge vendor_persist_mmi_file:dir {search};
+allow port-bridge vendor_persist_mmi_file:file { read open getattr };
+
+allow port-bridge vendor_shell_exec:file execute_no_trans;
+allow port-bridge sysfs_battery_supply:dir search;
+allow port-bridge sysfs_battery_supply:file rw_file_perms;
+allow port-bridge sysfs:file {read open getattr};
+allow port-bridge proc:file {read open getattr};
+allow port-bridge proc_meminfo:file {read open getattr};

@@ -19,6 +19,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.custom_ecc=1 \
     persist.vendor.radio.rat_on=combine \
     persist.backup.ntpServer=0.pool.ntp.org \
+    persist.vendor.ntp.svr_2=cn.ntp.org.cn \
     sys.vendor.shutdown.waittime=500
 
 ifneq ($(BOARD_FRP_PARTITION_NAME),)

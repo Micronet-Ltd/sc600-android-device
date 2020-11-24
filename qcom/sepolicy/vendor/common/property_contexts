@@ -199,6 +199,9 @@ persist.vendor.ssr.    u:object_r:vendor_ssr_prop:s0
 #ss-services (PD)
 persist.vendor.pd_locater_debug    u:object_r:vendor_pd_locater_dbg_prop:s0
 
+vendor.wifi.p_socket_app          u:object_r:quec_prop:s0	
+vendor.bt.start                   u:object_r:quec_prop:s0
+
 #qdcm socket service
 vendor.display.qdcm_socket_service u:object_r:vendor_qdcmss_prop:s0
 
@@ -258,9 +261,12 @@ persist.vendor.qg                u:object_r:hvdcp_opti_prop:s0
 persist.vendor.soh               u:object_r:hvdcp_opti_prop:s0
 #adsprpc
 vendor.fastrpc.                  u:object_r:adsprpc_prop:s0
+ro.build.quectelversion.release  u:object_r:quec_prop:s0
 
 #qvr properties
 vendor.qvr                       u:object_r:qvr_prop:s0
+
+ro.boot.pmi632_exist         u:object_r:quec_prop:s0
 
 #seccam hal service
 vendor.seccam_hal_service  u:object_r:vendor_seccam_prop:s0

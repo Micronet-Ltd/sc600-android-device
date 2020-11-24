@@ -1770,18 +1770,19 @@ case "$target" in
         case "$soc_id" in
             "293" | "304" | "338" | "351")
 
+#raynor--> rm improvetouch
                 # Start Host based Touch processing
-                case "$hw_platform" in
-                     "MTP" | "Surf" | "RCM" )
+                #case "$hw_platform" in
+                #     "MTP" | "Surf" | "RCM" )
                         #if this directory is present, it means that a
                         #1200p panel is connected to the device.
-                        dir="/sys/bus/i2c/devices/3-0038"
-                        if [ ! -d "$dir" ]; then
-                              start_hbtp
-                        fi
-                        ;;
-                esac
-
+                #        dir="/sys/bus/i2c/devices/3-0038"
+                #        if [ ! -d "$dir" ]; then
+                #              start_hbtp
+                #        fi
+                #        ;;
+                #esac
+#->raynor
                 if [ $soc_id -eq "338" ]; then
                     case "$hw_platform" in
                         "QRD" )

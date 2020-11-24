@@ -91,7 +91,7 @@ if [ "$(getprop persist.vendor.usb.config)" == "" -a \
 		      ;;
 	              "msm8953")
 			      if [ -d /config/usb_gadget ]; then
-				      setprop persist.vendor.usb.config diag,serial_cdev,rmnet,dpl,adb
+				      setprop persist.vendor.usb.config diag,serial_cdev,rmnet,adb
 			      else
 				      setprop persist.vendor.usb.config diag,serial_smd,rmnet_ipa,adb
 			      fi
@@ -182,11 +182,12 @@ if [ -d /config/usb_gadget ]; then
 	echo "$product_string" > /config/usb_gadget/g1/strings/0x409/product
 
 	# ADB requires valid iSerialNumber; if ro.serialno is missing, use dummy
-	serialnumber=`cat /config/usb_gadget/g1/strings/0x409/serialnumber 2> /dev/null`
-	if [ "$serialnumber" == "" ]; then
-		serialno=1234567
+	#serialnumber=`cat /config/usb_gadget/g1/strings/0x409/serialnumber 2> /dev/null`
+	#if [ "$serialnumber" == "" ]; then
+		#serialno=1234567
+		serialno=?
 		echo $serialno > /config/usb_gadget/g1/strings/0x409/serialnumber
-	fi
+	#fi
 fi
 
 #

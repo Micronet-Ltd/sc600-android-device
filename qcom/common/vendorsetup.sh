@@ -51,6 +51,7 @@ add_lunch_combo msm8937_32go-userdebug
 add_lunch_combo msm8937_64-userdebug
 add_lunch_combo msm8953_32-userdebug
 add_lunch_combo msm8953_64-userdebug
+add_lunch_combo msm8953_64-user
 add_lunch_combo msm8998-userdebug
 add_lunch_combo msm8998_32-userdebug
 add_lunch_combo sdm660_64-userdebug
