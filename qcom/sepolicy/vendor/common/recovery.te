@@ -22,6 +22,19 @@ recovery_only(`
     # Enable adb on configfs devices
     allow recovery configfs:file rw_file_perms;
     allow recovery configfs:dir rw_dir_perms;
+    allow recovery sysfs_switch_dock:dir { search };    
+    allow recovery sysfs_switch_dock:lnk_file { read };
+    allow recovery serial_device_hs0:chr_file { read write open ioctl};
+    allow recovery recovery:capability { fsetid };
+    dontaudit recovery property_type:property_service *;
+    dontaudit recovery property_type:file *;
+    set_prop(recovery, system_prop);
     set_prop(recovery, ffs_prop);
-    get_prop(recovery, vendor_boot_mode_prop)
+    get_prop(recovery, vendor_boot_mode_prop);
+    get_prop(recovery, hw_build_version_mcu);
+    set_prop(recovery, hw_build_version_mcu);
+    get_prop(recovery, hw_build_version_fpga);
+    set_prop(recovery, hw_build_version_fpga);
+    get_prop(recovery, hw_board_id);
+    set_prop(recovery, hw_board_id);
 ')

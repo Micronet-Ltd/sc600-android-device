@@ -1,4 +1,4 @@
-# Copyright (c) 2016, 2018, The Linux Foundation. All rights reserved.
+# Copyright (c) 2019, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -25,12 +25,12 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-r_dir_file(system_server, vendor_carrier_file);
-allow system_server resourcecache_data_file:dir create_dir_perms;
-allow system_server resourcecache_data_file:file create_file_perms;
-allow system_server sysfs_switch_dock:lnk_file r_file_perms;
-allow system_server proc_board_id:file r_file_perms;
-get_prop(system_server, hw_build_version_mcu);
-get_prop(system_server, hw_build_version_fpga);
-set_prop(system_server, hw_build_version_mcu);
-set_prop(system_server, hw_build_version_fpga);
+allow init sysfs_gpwd:file rw_file_perms;
+#allow init post_init_exec:file rx_file_perms;
+allow init proc_board_id:file rw_file_perms;
+set_prop(init, hw_board_id);
+set_prop(init, iodriver_boot_complete);
+set_prop(init, hw_build_version_mcu);
+set_prop(init, hw_build_version_fpga);
+set_prop(init, hw_board_id);
+

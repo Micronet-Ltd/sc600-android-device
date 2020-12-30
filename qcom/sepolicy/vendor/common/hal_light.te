@@ -27,3 +27,6 @@
 
 r_dir_file(hal_light, sysfs_graphics)
 allow hal_light sysfs_graphics:file rw_file_perms;
+allow platform_app hal_light_hwservice:hwservice_manager find;
+
+get_prop(hal_light, hw_build_version_mcu);

@@ -32,6 +32,7 @@ allow qti_init_shell fm_radio_device:chr_file r_file_perms;
 allow qti_init_shell vm_bms_device:chr_file getattr;
 
 allow qti_init_shell gpu_device:chr_file getattr;
+#allow qti_init_shell system_prop:property_service set;
 
 # for insmod of iris ko, this is needed.
 # needed by most of the services

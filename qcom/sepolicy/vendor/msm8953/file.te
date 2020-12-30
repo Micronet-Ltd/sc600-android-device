@@ -27,3 +27,6 @@
 
 #sysfs emmc dload type
 type sysfs_emmc_dload, sysfs_type, fs_type;
+type sysfs_gpwd, sysfs_type, fs_type, mlstrustedobject;
+type proc_board_id, fs_type, proc_type;
+

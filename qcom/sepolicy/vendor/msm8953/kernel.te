@@ -1,0 +1,2 @@
+allow kernel proc_board_id:file w_file_perms;
+

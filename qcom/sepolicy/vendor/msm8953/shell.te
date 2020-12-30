@@ -1,4 +1,4 @@
-# Copyright (c) 2016, 2018, The Linux Foundation. All rights reserved.
+# Copyright (c) 2019, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -25,12 +25,16 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-r_dir_file(system_server, vendor_carrier_file);
-allow system_server resourcecache_data_file:dir create_dir_perms;
-allow system_server resourcecache_data_file:file create_file_perms;
-allow system_server sysfs_switch_dock:lnk_file r_file_perms;
-allow system_server proc_board_id:file r_file_perms;
-get_prop(system_server, hw_build_version_mcu);
-get_prop(system_server, hw_build_version_fpga);
-set_prop(system_server, hw_build_version_mcu);
-set_prop(system_server, hw_build_version_fpga);
+#allow shell hw_board_id:property_service set;
+allow shell proc_board_id:file r_file_perms;
+
+# open to make kmsg available in user build
+# add neverallow exclusion for syslog_read in /system/sepolicy/public/app.te and /system/sepolicy/prebuilts/api/28.0/public/app.te
+#
+#allow shell proc_kmsg:file r_file_perms;
+#allow shell kmsg_device:chr_file r_file_perms;
+#allow shell kernel:system syslog_read;
+#allow shell vendor_toolbox_exec:file rx_file_perms;
+
+get_prop(shell, hw_board_id);
+#set_prop(shell, iodriver_boot_complete);

@@ -27,3 +27,6 @@
 
 #properites for init.qcom.sh script
 type vendor_media_msm8953_version_prop, property_type;
+type hw_board_id, property_type;
+type iodriver_boot_complete, property_type;
+type vendor_serialno, property_type;
