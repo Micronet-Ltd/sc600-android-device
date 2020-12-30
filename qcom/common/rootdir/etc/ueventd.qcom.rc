@@ -71,7 +71,8 @@ firmware_directories /vendor/firmware_mnt/image/
 
 /dev/radio0               0640   system     system
 /dev/rfcomm0              0660   bluetooth  bluetooth
-/dev/ttyUSB0              0660   bluetooth  bluetooth
+/dev/ttyUSB*              0666   system     system
+/dev/ttyACM*              0666   system     system
 /dev/smdcntl0             0640   radio      radio
 /dev/smdcntl1             0640   radio      radio
 /dev/smdcntl2             0640   radio      radio
@@ -205,7 +206,8 @@ firmware_directories /vendor/firmware_mnt/image/
 /dev/msm_preproc_ctl      0660   system     audio
 /dev/msm_rtac             0660   system     audio
 /dev/msm_voicememo        0660   system     audio
-/dev/ttyHSL1              0660   system     system
+/dev/ttyHSL0              0666   root	    root
+/dev/ttyHSL1              0666   system     system
 /dev/ttyHS1               0660   system     system
 /dev/mdm                  0660   system     radio
 /sys/devices/virtual/smdpkt/smdcntl*       open_timeout   0664 radio radio
@@ -284,6 +286,8 @@ firmware_directories /vendor/firmware_mnt/image/
 /sys/devices/virtual/input/input*                   enable_ps_sensor 0660  system   input
 /sys/devices/virtual/input/input*                   set_delay_ms     0660  system   input
 /sys/devices/virtual/input/input*                   do_flush         0660  system   input
+
+/sys/devices/virtual/switch/dock        			state          0666    system 	system
 
 # vm_bms
 /dev/vm_bms               0660   system     system
