@@ -104,7 +104,13 @@ genfscon sysfs /devices/soc/c200000.qcom,lpass/subsys2/name      u:object_r:sysf
 genfscon sysfs /devices/soc/a21b000.qcom,pronto/subsys3/name     u:object_r:sysfs_ssr:s0
 genfscon sysfs /devices/soc/4080000.qcom,mss/subsys4/name        u:object_r:sysfs_ssr:s0
 
+<<<<<<< HEAD
 genfscon sysfs /devices/platform/soc/soc:watchdogpin/     	 u:object_r:sysfs_gpwd:s0
+=======
+#genfscon sysfs /devices/soc/soc:watchdogpin/     		 u:object_r:sysfs_gpwd:s0
+genfscon sysfs /devices/platform/watchdogpin/     		 u:object_r:sysfs_gpwd:s0
+
+>>>>>>>  CE changes, wathdog, sensores, camera are working
 genfscon proc  /board_id  					 u:object_r:proc_board_id:s0
 genfscon proc  /mcu_version  					 u:object_r:proc_board_id:s0
 genfscon proc  /fpga_version  					 u:object_r:proc_board_id:s0
