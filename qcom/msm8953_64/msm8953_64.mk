@@ -96,10 +96,10 @@ ifeq ($(PRODUCT_VARIANT),smartcam)
 PRODUCT_MODEL := MSCAM
 DEVICE_NAME   := MSCAM
 ifeq ($(PRODUCT_EXT_APK),lm)
-PRODUCT_VER    := 11.0.0.1
+PRODUCT_VER    := 11.0.0.2
 PRODUCT_EXT_APK := lm
 else
-PRODUCT_VER    := 10.0.0.1
+PRODUCT_VER    := 10.0.0.2
 PRODUCT_EXT_APK :=
 endif
 PRODUCT_VARIANT := smartcam
@@ -113,11 +113,11 @@ else
 PRODUCT_MODEL := SmarTab-8
 DEVICE_NAME   := SmarTab-8
 ifeq ($(TARGET_BUILD_VARIANT),user)
-PRODUCT_VER    := 01.0.0.1
+PRODUCT_VER    := 01.0.0.2
 PRODUCT_GMS_COMMON := true
 DISPLAY_BUILD_NUMBER := true
 else
-PRODUCT_VER    := 00.0.0.1
+PRODUCT_VER    := 00.0.0.2
 PRODUCT_GMS_COMMON ?= false
 endif
 endif
