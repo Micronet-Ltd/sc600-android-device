@@ -59,4 +59,20 @@
 
    <!-- Device supports WPA3 -->
    <bool translatable="false" name="config_wifi_wpa3_supported">false</bool>
+   
+    <!-- Control the behavior when the user short presses the menu button.
+            0 - Nothing
+            1 - app switch
+         This needs to match the constants in
+         policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+    -->
+    <integer name="config_shortPressOnMenuBehavior">1</integer>
+
+    <!-- Minimum screen brightness setting allowed by the power manager.
+         The user is forbidden from setting the brightness below this level. -->
+    <integer name="config_screenBrightnessSettingMinimum">1</integer>
+
+    <!-- Default screen brightness setting.
+         Must be in the range specified by minimum and maximum. -->
+    <integer name="config_screenBrightnessSettingDefault">96</integer>
 </resources>
