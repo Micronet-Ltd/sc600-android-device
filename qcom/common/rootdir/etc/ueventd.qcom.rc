@@ -287,7 +287,7 @@ firmware_directories /vendor/firmware_mnt/image/
 /sys/devices/virtual/input/input*                   set_delay_ms     0660  system   input
 /sys/devices/virtual/input/input*                   do_flush         0660  system   input
 
-/sys/devices/virtual/switch/dock        			state          0666    system 	system
+/sys/devices/virtual/switch_dock/dock        		state          0666    system 	system
 
 # vm_bms
 /dev/vm_bms               0660   system     system
