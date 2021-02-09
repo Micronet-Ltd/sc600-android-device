@@ -443,7 +443,7 @@ on boot
     chown system system /sys/class/leds/blue/breath
     chown system system /sys/class/leds/blue/delay_on
     chown system system /sys/class/leds/blue/delay_off
-    insmod /system/lib/modules/ftdi_sio.ko 
+    insmod /vendor/lib/modules/ftdi_sio.ko 
     # Set adb to be on TCP
     setprop service.adb.tcp.port 5555
 

@@ -179,6 +179,7 @@ BOARD_VENDOR_KERNEL_MODULES := \
     $(KERNEL_MODULES_OUT)/audio_machine_ext_sdm450.ko \
     $(KERNEL_MODULES_OUT)/mpq-adapter.ko \
     $(KERNEL_MODULES_OUT)/mpq-dmx-hw-plugin.ko \
+    $(KERNEL_MODULES_OUT)/ftdi_sio.ko \
 
 endif
 
