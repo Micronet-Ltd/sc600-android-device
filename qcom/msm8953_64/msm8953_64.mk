@@ -84,6 +84,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, device/qcom/common/common64.mk)
 
+# set media volume to default 70%
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.config.media_vol_default=10
+	
 PRODUCT_NAME := msm8953_64
 PRODUCT_DEVICE := msm8953_64
 PRODUCT_BRAND := TREQ
@@ -96,10 +100,10 @@ ifeq ($(PRODUCT_VARIANT),smartcam)
 PRODUCT_MODEL := MSCAM
 DEVICE_NAME   := MSCAM
 ifeq ($(PRODUCT_EXT_APK),lm)
-PRODUCT_VER    := 11.0.0.4
+PRODUCT_VER    := 11.0.0.5
 PRODUCT_EXT_APK := lm
 else
-PRODUCT_VER    := 10.0.0.4
+PRODUCT_VER    := 10.0.0.5
 PRODUCT_EXT_APK :=
 endif
 PRODUCT_VARIANT := smartcam
@@ -113,11 +117,11 @@ else
 PRODUCT_MODEL := SmarTab-8
 DEVICE_NAME   := SmarTab-8
 ifeq ($(TARGET_BUILD_VARIANT),user)
-PRODUCT_VER    := 01.0.0.4
+PRODUCT_VER    := 01.0.0.5
 PRODUCT_GMS_COMMON := true
 DISPLAY_BUILD_NUMBER := true
 else
-PRODUCT_VER    := 00.0.0.4
+PRODUCT_VER    := 00.0.0.5
 PRODUCT_GMS_COMMON ?= false
 endif
 endif
@@ -461,8 +465,9 @@ ifeq ($(strip $(TARGET_KERNEL_VERSION)), 3.18)
     ENABLE_EXTRA_VENDOR_LIBS := true
     PRODUCT_PACKAGES += vendor-extra-libs
 endif
-PRODUCT_PACKAGES += iodriver recovery.iodriver
+PRODUCT_PACKAGES += iodriver recovery.iodriver populate_board_id.sh
 ifeq ($(PRODUCT_EXT_APK),lm)
 PRODUCT_PACKAGES += lm.smartcam.androidapp libLMLibEncDec libLMLibJni liblocee liblocee-jni 
 endif
 
+PRODUCT_PACKAGES += bootanimation.zip

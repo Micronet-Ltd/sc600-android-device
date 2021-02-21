@@ -348,7 +348,7 @@ firmware_directories /vendor/firmware_mnt/image/
 /dev/block/platform/soc/8804000.sdhci/by-name/frp       0600   system     system
 
 # Kmsg device
-/dev/kmsg                                               0620   root       system
+/dev/kmsg                                               0666   root       system
 
 # LED class devices
 /sys/class/leds/red      delay_on     0640    system    system

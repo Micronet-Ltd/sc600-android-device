@@ -278,3 +278,4 @@ ifneq ($(ENABLE_AB),true)
 endif
 
 TARGET_ENABLE_MEDIADRM_64 := true
+PRODUCT_DEFAULT_DEV_CERTIFICATE :=build/target/product/security/c801/releasekey
