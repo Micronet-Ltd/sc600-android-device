@@ -24,3 +24,7 @@
 # WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+type serial_device_hs0, dev_type, mlstrustedobject;
+type device_tty_mic, dev_type, fs_type, mlstrustedobject;
+type device_cradle_dev, dev_type, fs_type, mlstrustedobject;

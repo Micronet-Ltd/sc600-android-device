@@ -203,3 +203,6 @@ type quec_prop, property_type;
 #seccam property
 type vendor_seccam_prop, property_type;
 type vendor_core_ctl_prop, property_type;
+
+type hw_build_version_mcu, property_type;
+type hw_build_version_fpga, property_type;

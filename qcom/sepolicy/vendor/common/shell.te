@@ -35,3 +35,12 @@ r_dir_file(shell, qti_logkit_pub_data_file)
 
 # allow shell permissions to perf
 get_prop(shell, vendor_mpctl_prop);
+#allow shell sysfs_leds:dir rw_dir_perms;
+#allow shell sysfs_leds:file rw_file_perms;
+allow shell sysfs_leds:lnk_file read;
+
+get_prop(shell, hw_build_version_mcu);
+#set_prop(shell, hw_build_version_mcu);
+get_prop(shell, hw_build_version_fpga);
+#set_prop(shell, hw_build_version_fpga);
+

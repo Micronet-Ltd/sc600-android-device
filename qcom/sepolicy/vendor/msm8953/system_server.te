@@ -28,3 +28,9 @@
 r_dir_file(system_server, vendor_carrier_file);
 allow system_server resourcecache_data_file:dir create_dir_perms;
 allow system_server resourcecache_data_file:file create_file_perms;
+allow system_server sysfs_switch_dock:lnk_file r_file_perms;
+allow system_server proc_board_id:file r_file_perms;
+get_prop(system_server, hw_build_version_mcu);
+get_prop(system_server, hw_build_version_fpga);
+set_prop(system_server, hw_build_version_mcu);
+set_prop(system_server, hw_build_version_fpga);

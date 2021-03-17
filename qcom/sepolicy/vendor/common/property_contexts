@@ -271,3 +271,6 @@ ro.boot.pmi632_exist         u:object_r:quec_prop:s0
 #seccam hal service
 vendor.seccam_hal_service  u:object_r:vendor_seccam_prop:s0
 vendor.hyp_core_ctl        u:object_r:vendor_core_ctl_prop:s0
+
+hw.build.version.mcu       u:object_r:hw_build_version_mcu:s0
+hw.build.version.fpga      u:object_r:hw_build_version_fpga:s0

@@ -1,0 +1,60 @@
+type iodriver, domain;
+type iodriver_exec, exec_type, vendor_file_type,file_type;
+
+#typeattribute iodriver coredomain;
+typeattribute iodriver system_writes_vendor_properties_violators;
+typeattribute iodriver mlstrustedsubject;
+
+#permissive iodriver;
+
+#type iodriver_data_file, file_type, data_file_type;
+
+
+init_daemon_domain(iodriver)
+domain_auto_trans(init, iodriver_exec, iodriver)
+
+#unix_socket_connect(iodriver, property, init);
+#domain_auto_trans(iodriver, iodriver_exec, su);
+
+#allow iodriver system_data_file:file {open read};
+allow iodriver self:unix_stream_socket { create_stream_socket_perms connectto };
+allow iodriver self:unix_dgram_socket { create_socket_perms sendto };
+
+allow iodriver self:capability {setgid setuid };
+dontaudit iodriver self:capability { fsetid net_raw };
+
+#set_prop(iodriver, system_prop);
+#set_prop(iodriver, default_prop);
+#set_prop(iodriver, powerctl_prop);
+#set_prop(iodriver, ctl_default_prop);
+set_prop(iodriver, iodriver_boot_complete);
+set_prop(iodriver, hw_build_version_mcu);
+set_prop(iodriver, hw_build_version_fpga);
+set_prop(iodriver, hw_board_id);
+get_prop(iodriver, hw_build_version_mcu);
+get_prop(iodriver, hw_build_version_fpga);
+get_prop(iodriver, hw_board_id);
+
+allow iodriver socket_device:dir rw_dir_perms;
+
+allow iodriver sysfs:dir r_dir_perms;
+#allow iodriver sysfs_socinfo:dir r_dir_perms;
+#allow iodriver sysfs_socinfo:file rw_file_perms;
+#allow iodriver sysfs_data:file r_file_perms;
+
+allow iodriver system_file:dir r_dir_perms;
+allow iodriver tty_device:chr_file rw_file_perms;
+allow iodriver device_tty_mic:chr_file rw_file_perms;
+allow iodriver device_tty_mic:chr_file getattr;
+allow iodriver device_cradle_dev:chr_file rw_file_perms;
+allow iodriver device_cradle_dev:chr_file getattr;
+allow iodriver storage_file:dir search;
+allow iodriver storage_file:file rw_file_perms;
+allow iodriver storage_file:lnk_file rw_file_perms;
+
+allow iodriver sysfs_leds:dir r_dir_perms;
+allow iodriver sysfs_leds:file rw_file_perms;
+allow iodriver sysfs_leds:lnk_file read;
+#allow iodriver proc:dir rw_dir_perms;
+allow iodriver proc_board_id:file rw_file_perms;
+

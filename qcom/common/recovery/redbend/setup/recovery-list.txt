@@ -1,0 +1,54 @@
+################################################
+erase: /fsc
+erase: /ssd
+erase: /DDR
+erase: /devinfo
+erase: /misc
+erase: /keystore
+erase: /config
+erase: /oem
+erase: /modem
+flash: /modem /sdcard/NON-HLOS.bin
+erase: /sbl1
+flash: /sbl1 /sdcard/sbl1.mbn
+erase: /sbl1bak
+flash: /sbl1bak /sdcard/sbl1.mbn
+erase: /rpm
+flash: /rpm /sdcard/rpm.mbn
+erase: /rpmbak
+flash: /rpmbak /sdcard/rpm.mbn
+erase: /tz
+flash: /tz /sdcard/tz.mbn
+erase: /tzbak
+flash: /tzbak /sdcard/tz.mbn
+erase: /hyp
+flash: /hyp /sdcard/hyp.mbn
+erase: /hypbak
+flash: /hypbak /sdcard/hyp.mbn
+erase: /modemst1
+flash: /modemst1 /sdcard/st1
+erase: /modemst2
+flash: /modemst2 /sdcard/st2
+erase: /splash
+flash: /splash /sdcard/splash.img
+erase: /fsg
+flash: /fsg /sdcard/fs_image.tar.gz.mbn.img
+erase: /sec
+flash: /sec /sdcard/sec.dat
+erase: /aboot
+flash: /aboot /sdcard/emmc_appsboot.mbn
+erase: /abootbak
+flash: /abootbak /sdcard/emmc_appsboot.mbn
+erase: /boot
+flash: /boot /sdcard/boot.img
+erase: /recovery
+flash: /recovery /sdcard/recovery.img
+erase: /persist
+flash: /persist /sdcard/persist.img
+erase: /system
+flash: /system /sdcard/system.img
+erase: /cache
+flash: /cache /sdcard/cache.img
+erase: /userdata
+flash: /userdata /sdcard/userdata.img
+################################################

@@ -69,3 +69,15 @@ dontaudit {
     vold_prepare_subdirs
     zygote
 } self:capability dac_read_search;
+
+allow {
+    domain
+    -ephemeral_app
+    -isolated_app
+    -mediaprovider
+    -untrusted_app
+    -untrusted_app_25
+    -untrusted_app_27
+    -untrusted_app_all
+    -untrusted_v2_app
+} sysfs_switch_dock:file rw_file_perms;
