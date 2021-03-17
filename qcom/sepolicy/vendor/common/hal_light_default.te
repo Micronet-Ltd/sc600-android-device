@@ -26,3 +26,8 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 allow hal_light_default sysfs_graphics:file rw_file_perms;
+allow hal_light_default sysfs:file rw_file_perms;
+allow hal_light_default sysfs:file {open read write};
+hal_client_domain(platform_app, hal_light);
+
+get_prop(hal_light_default, hw_build_version_mcu);

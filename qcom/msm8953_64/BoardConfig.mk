@@ -179,6 +179,7 @@ BOARD_VENDOR_KERNEL_MODULES := \
     $(KERNEL_MODULES_OUT)/audio_machine_ext_sdm450.ko \
     $(KERNEL_MODULES_OUT)/mpq-adapter.ko \
     $(KERNEL_MODULES_OUT)/mpq-dmx-hw-plugin.ko \
+    $(KERNEL_MODULES_OUT)/ftdi_sio.ko \
 
 endif
 
@@ -214,7 +215,7 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 BOARD_EGL_CFG := device/qcom/msm8953_64/egl.cfg
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 # Add NON-HLOS files for ota upgrade
-ADD_RADIO_FILES := true
+ADD_RADIO_FILES ?= false
 #TARGET_RECOVERY_UPDATER_LIBS += librecovery_updater_msm
 TARGET_INIT_VENDOR_LIB := libinit_msm
 
@@ -277,3 +278,4 @@ ifneq ($(ENABLE_AB),true)
 endif
 
 TARGET_ENABLE_MEDIADRM_64 := true
+PRODUCT_DEFAULT_DEV_CERTIFICATE :=build/target/product/security/c801/releasekey

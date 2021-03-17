@@ -56,6 +56,8 @@ hal_client_domain(hal_perf_default, hal_graphics_composer);
 allow hal_perf_default qdisplay_service:service_manager find;
 r_dir_file(hal_perf_default, appdomain);
 hal_client_domain(hal_perf_default, hal_srvctracker);
+allow hal_perf sysfs_switch_dock:dir r_dir_perms;
+allow hal_perf sysfs_switch_dock:file rw_file_perms;
 
 allow hal_perf {
     sysfs_devices_system_cpu
@@ -75,6 +77,7 @@ allow hal_perf {
     sysfs_battery_supply
     sysfs_process_reclaim
     sysfs_qfprom
+    sysfs_switch_dock
 }:dir r_dir_perms;
 
 allow hal_perf {
@@ -93,6 +96,7 @@ allow hal_perf {
     sysfs_battery_supply
     sysfs_process_reclaim
     sysfs_qfprom
+    sysfs_switch_dock
 }:file rw_file_perms;
 
 allow hal_perf {
@@ -100,6 +104,7 @@ allow hal_perf {
     sysfs_mmc_host
     sysfs_scsi_host
     sysfs_kgsl
+    sysfs_switch_dock
 }:lnk_file r_file_perms;
 
 # Allow to self kill capability

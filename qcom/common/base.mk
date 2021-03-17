@@ -1257,6 +1257,18 @@ else
         persist.vendor.qcomsysd.enabled=1
 endif
 
+ifeq ($(PRODUCT_VARIANT),smartcam)
+PRODUCT_PROPERTY_OVERRIDES += persist.vendor.board.config=smartcam
+PRODUCT_PROPERTY_OVERRIDES += ro.product.name=MSCAM
+PRODUCT_PROPERTY_OVERRIDES += ro.device.model=MSCAM
+PRODUCT_PROPERTY_OVERRIDES += ro.product.device=MSCAM
+else
+PRODUCT_PROPERTY_OVERRIDES += persist.vendor.board.config=tab8
+PRODUCT_PROPERTY_OVERRIDES += ro.product.name=SmarTab-8
+PRODUCT_PROPERTY_OVERRIDES += ro.device.model=SmarTab-8
+PRODUCT_PROPERTY_OVERRIDES += ro.product.device=SmarTab-8
+endif
+
 PRODUCT_PACKAGES += liboemaids_system
 PRODUCT_PACKAGES += liboemaids_vendor
 PRODUCT_PACKAGES += android.hardware.health@2.0-service

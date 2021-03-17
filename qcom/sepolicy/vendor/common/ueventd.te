@@ -15,6 +15,7 @@ allow ueventd {
     sysfs_socinfo
     sysfs_data
     sysfs_kgsl
+    sysfs_switch_dock
 }:file w_file_perms;
 
 #allow ueventd mba_debug_dev:blk_file r_file_perms;

@@ -61,3 +61,9 @@ allow init {
 
 allow init mnt_vendor_file:lnk_file r_file_perms;
 allow init nativetest_data_file:dir r_dir_perms;
+dontaudit init property_type:property_service *;
+dontaudit init property_type:file *;
+set_prop(init, system_prop);
+set_prop(init, hw_build_version_mcu);
+set_prop(init, hw_build_version_fpga);
+allow init { system_file }:system module_load;

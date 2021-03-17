@@ -72,6 +72,37 @@ on post-fs-data
     mkdir /persist/data/tz 0700 system system
     mkdir /data/misc/dts 0770 media audio
     #mkdir /data/vendor/hbtp 0750 system system #raynor:rm improveTouch
+    symlink /dev/ttyACM0 /dev/ttyMICRONET_CONTROL
+	symlink /dev/ttyACM1 /dev/ttyMICRONET_ACCEL
+	symlink /dev/ttyACM2 /dev/ttyCAN0
+	symlink /dev/ttyACM3 /dev/ttyCAN1
+    symlink /dev/ttyACM4 /dev/ttyMICRONET_J1708
+    chmod 0666 /dev/vaccel
+    chmod 0666 /dev/vleds
+    chmod 0666 /dev/mcu_j1708
+    chmod 0666 /dev/j1708
+	chmod 0666 /dev/one_wire
+    chmod 0666 /dev/ttyACM0
+    chmod 0666 /dev/ttyACM1
+    chmod 0666 /dev/ttyACM2
+    chmod 0666 /dev/ttyACM3
+    chmod 0666 /dev/ttyACM4
+
+#    write /proc/mcu_version unknown
+    write /proc/fpga_version unknown
+#    chmod 0666 /proc/mcu_version
+#    chmod 0666 /proc/fpga_version
+    chmod 0666 /dev/suspend_timeout
+    chmod 0666 /dev/ignition_timeout
+    chmod 0666 /dev/ignition_level
+
+    write /sys/class/leds/vled0/trigger none
+    write /sys/class/leds/vled1/trigger none
+	write /sys/class/leds/aled/brightness 0
+
+    chmod 0666 /sys/class/leds/vled0/brightness
+    chmod 0666 /sys/class/leds/vled1/brightness
+    chmod 0666 /sys/class/leds/aled/brightness
     mkdir /data/vendor/tloc 0700 system drmrpc
 
 
@@ -120,6 +151,43 @@ service qrngp /system/bin/qrngp -f
 
 on property:sys.boot_completed=1
    start qrngp
+   # setprop	hw.build.version.mcu unknown
+   # setprop hw.build.version.fpga unknown
+   start board_id
+   start iodriver
+   start suspend_service
+
+on property:iodriver.boot_complete=1
+   write /sys/class/leds/vled1/brightness 0
+   write /sys/class/leds/vled0/brightness 0
+
+on property:vib.set_profile=*
+   write /sys/devices/soc/soc:hi3w/cmd2slv ${vib.set_profile}
+on property:vib.get_profile=-1
+   start board_id
+
+service board_id /vendor/bin/populate_board_id.sh
+   class late_start
+   seclabel u:r:post_init:s0
+   user root
+   group root system
+   disabled
+   oneshot
+	
+service iodriver /system/bin/iodriver
+   class late_start
+   seclabel u:r:iodriver:s0
+   user root
+   group root
+   disabled
+
+service suspend_service /system/bin/suspend_service
+   class late_start
+   seclabel u:r:suspend_service:s0
+   user root
+   group root
+   oneshot
+   disabled
 
 service vendor.qseecomd /vendor/bin/qseecomd
    class core
@@ -204,6 +272,11 @@ on boot
     chown system system /persist/speccfg/vendor_persist.prop
     chown system system /persist/speccfg/submask
     chown system system /persist/speccfg/partition
+
+    chmod 0666 /sys/class/leds/button-backlight/brightness
+    chmod 0666 /sys/class/leds/blue/brightness
+    chmod 0666 /sys/class/leds/green/brightness
+    chmod 0666 /sys/class/leds/red/brightness
 
 # access permission for wlan
     chown system system /mnt/vendor/persist/WCNSS_qcom_wlan_nv.bin
@@ -375,6 +448,9 @@ on boot
     chown system system /sys/class/leds/blue/breath
     chown system system /sys/class/leds/blue/delay_on
     chown system system /sys/class/leds/blue/delay_off
+    insmod /vendor/lib/modules/ftdi_sio.ko 
+    # Set adb to be on TCP
+    setprop service.adb.tcp.port 5555
 
 service vendor.tlocd /vendor/bin/tloc_daemon
     class late_start

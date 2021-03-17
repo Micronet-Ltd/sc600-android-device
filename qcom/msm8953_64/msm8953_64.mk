@@ -84,10 +84,62 @@ PRODUCT_PROPERTY_OVERRIDES += \
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, device/qcom/common/common64.mk)
 
+# set media volume to default 70%
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.config.media_vol_default=10
+	
 PRODUCT_NAME := msm8953_64
 PRODUCT_DEVICE := msm8953_64
-PRODUCT_BRAND := qti
-PRODUCT_MODEL := msm8953 for arm64
+PRODUCT_BRAND := TREQ
+#PRODUCT_MODEL := msm8953 for arm64
+#PRODUCT_VARIANT := $(shell echo $${PRODUCT_VARIANT})
+PRODUCT_VARIANT := smartcam
+#RODUCT_EXT_APK  := $(shell echo $${PRODUCT_EXT_APK})
+RODUCT_EXT_APK  := 
+ifeq ($(PRODUCT_VARIANT),smartcam)
+PRODUCT_MODEL := MSCAM
+DEVICE_NAME   := MSCAM
+ifeq ($(PRODUCT_EXT_APK),lm)
+PRODUCT_VER    := 11.0.0.6
+PRODUCT_EXT_APK := lm
+else
+PRODUCT_VER    := 10.0.0.6
+PRODUCT_EXT_APK :=
+endif
+PRODUCT_VARIANT := smartcam
+#ifeq ($(TARGET_BUILD_VARIANT),user)
+#    KERNEL_DEFCONFIG := msm8953_64_c801_sc-perf_defconfig
+#else
+#    KERNEL_DEFCONFIG := msm8953_64_c801_sc_defconfig
+#endif
+PRODUCT_GMS_COMMON ?= false
+else
+PRODUCT_MODEL := SmarTab-8
+DEVICE_NAME   := SmarTab-8
+ifeq ($(TARGET_BUILD_VARIANT),user)
+PRODUCT_VER    := 01.0.0.6
+PRODUCT_GMS_COMMON := true
+DISPLAY_BUILD_NUMBER := true
+else
+PRODUCT_VER    := 00.0.0.6
+PRODUCT_GMS_COMMON ?= false
+endif
+endif
+BUILD_DT       := $(shell date +%s)
+PRODUCT_DT     := date -d @$(BUILD_DT)
+BUILD_NUMBER   := $(shell echo $${USER:0:8}).$(PRODUCT_MODEL)_$(PRODUCT_VER)_$(shell $(PRODUCT_DT) +%Y%m%d.%H%M)
+
+#add by zzj for GMS
+ifeq ($(PRODUCT_GMS_COMMON),true)
+$(warning "Building GMS version.")
+$(call inherit-product, vendor/google/products/gms.mk )
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.com.google.clientidbase=android-uniscope
+
+
+#add by zzj for GMS
+endif
+
 
 PRODUCT_BOOT_JARS += tcmiface
 
@@ -413,3 +465,9 @@ ifeq ($(strip $(TARGET_KERNEL_VERSION)), 3.18)
     ENABLE_EXTRA_VENDOR_LIBS := true
     PRODUCT_PACKAGES += vendor-extra-libs
 endif
+PRODUCT_PACKAGES += iodriver recovery.iodriver populate_board_id.sh
+ifeq ($(PRODUCT_EXT_APK),lm)
+PRODUCT_PACKAGES += lm.smartcam.androidapp libLMLibEncDec libLMLibJni liblocee liblocee-jni 
+endif
+
+PRODUCT_PACKAGES += bootanimation.zip

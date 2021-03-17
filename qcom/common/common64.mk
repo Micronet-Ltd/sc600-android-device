@@ -7,10 +7,12 @@ $(call inherit-product-if-exists, $(QCPATH)/common/config/device-vendor.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
-PRODUCT_BRAND := qcom
+#PRODUCT_BRAND := qcom
+PRODUCT_BRAND := TREQ
 PRODUCT_AAPT_CONFIG += hdpi mdpi
 
-PRODUCT_MANUFACTURER := QUALCOMM
+#PRODUCT_MANUFACTURER := QUALCOMM
+PRODUCT_MANUFACTURER := TREQ
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
@@ -20,6 +22,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.rat_on=combine \
     persist.backup.ntpServer=0.pool.ntp.org \
     persist.vendor.ntp.svr_2=cn.ntp.org.cn \
+    qemu.hw.mainkeys=1\
     sys.vendor.shutdown.waittime=500
 
 ifneq ($(BOARD_FRP_PARTITION_NAME),)
@@ -42,6 +45,6 @@ ifneq ($(TARGET_HAS_LOW_RAM), true)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 endif
 endif
-
+$(call inherit-product-if-exists, device/qcom/common/recovery/redbend/rb_ua.mk)
 #$(call inherit-product, frameworks/base/data/fonts/fonts.mk)
 #$(call inherit-product, frameworks/base/data/keyboards/keyboards.mk)
