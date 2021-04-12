@@ -1,6 +1,7 @@
 ALLOW_MISSING_DEPENDENCIES=true
 # Enable AVB 2.0
 ifneq ($(wildcard kernel/msm-4.9),)
+#BOARD_AVB_ENABLE ?= false
 BOARD_AVB_ENABLE := true
 # Enable chain partition for system, to facilitate system-only OTA in Treble.
 BOARD_AVB_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
@@ -100,10 +101,10 @@ ifeq ($(PRODUCT_VARIANT),smartcam)
 PRODUCT_MODEL := MSCAM
 DEVICE_NAME   := MSCAM
 ifeq ($(PRODUCT_EXT_APK),lm)
-PRODUCT_VER    := 11.0.0.6
+PRODUCT_VER    := 11.0.0.9
 PRODUCT_EXT_APK := lm
 else
-PRODUCT_VER    := 10.0.0.6
+PRODUCT_VER    := 10.0.0.9
 PRODUCT_EXT_APK :=
 endif
 PRODUCT_VARIANT := smartcam
@@ -117,11 +118,11 @@ else
 PRODUCT_MODEL := SmarTab-8
 DEVICE_NAME   := SmarTab-8
 ifeq ($(TARGET_BUILD_VARIANT),user)
-PRODUCT_VER    := 01.0.0.6
+PRODUCT_VER    := 01.0.0.9
 PRODUCT_GMS_COMMON := true
 DISPLAY_BUILD_NUMBER := true
 else
-PRODUCT_VER    := 00.0.0.6
+PRODUCT_VER    := 00.0.0.9
 PRODUCT_GMS_COMMON ?= false
 endif
 endif
