@@ -898,6 +898,7 @@ PRODUCT_PACKAGES := \
     wipowerservice \
     Mms \
     Dmc \
+    cit.xml \
     FactoryKit
 
 ifeq ($(TARGET_HAS_LOW_RAM),true)
