@@ -203,5 +203,9 @@ hal_client_domain(system_server, hal_wifilearner)
 r_dir_file(system_server, sysfs_kgsl_proc);
 
 allow system_server { system_app_data_file bluetooth_data_file nfc_data_file radio_data_file shell_data_file app_data_file }:file map;
+#add by xxf
+userdebug_or_eng(`
+allow system_server sysfs_battery_supply:file {read open getattr};
+')
 
 get_prop(system_server, vendor_default_prop)

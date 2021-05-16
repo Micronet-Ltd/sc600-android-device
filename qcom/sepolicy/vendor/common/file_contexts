@@ -778,3 +778,5 @@
 /sys/devices/soc/leds/vled0(/.*)?			u:object_r:sysfs_leds:s0
 /sys/devices/soc/leds/vled1(/.*)?			u:object_r:sysfs_leds:s0
 /sys/devices/soc/leds/aled(/.*)?			u:object_r:sysfs_leds:s0
+/sys/devices/soc/leds-qpnp-21/leds/green(/.*)?		u:object_r:sysfs_leds:s0
+/sys/devices/soc/qpnp-smbcharger-18/leds/red(/.*)?	u:object_r:sysfs_leds:s0

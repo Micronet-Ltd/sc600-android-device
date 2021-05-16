@@ -898,7 +898,8 @@ PRODUCT_PACKAGES := \
     wipowerservice \
     Mms \
     Dmc \
-    FactoryKit
+    FactoryKit \
+	cit.xml
 
 ifeq ($(TARGET_HAS_LOW_RAM),true)
     DELAUN := Launcher3Go
