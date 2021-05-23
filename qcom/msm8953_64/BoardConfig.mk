@@ -21,6 +21,9 @@ BOARD_USES_GENERIC_AUDIO := true
 # 32-bit or 64-bit), the following line should be deleted
 BOARD_QTI_CAMERA_32BIT_ONLY := true
 
+# Enables BLUETOOTH
+BOARD_HAVE_BLUETOOTH := true  
+
 # Enables CSVT
 TARGET_USES_CSVT := true
 

@@ -271,6 +271,9 @@ PRODUCT_PACKAGES += \
     libantradio \
     antradio_app
 
+
+
+
 # Display/Graphics
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
@@ -283,6 +286,10 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-impl \
     android.hardware.light@2.0-service \
     android.hardware.configstore@1.0-service
+
+# bluetooth
+PRODUCT_PACKAGES += \
+	android.hardware.bluetooth@1.0-service
 
 PRODUCT_PACKAGES += wcnss_service
 
