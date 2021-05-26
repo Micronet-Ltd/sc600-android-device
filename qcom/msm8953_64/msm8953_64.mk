@@ -284,6 +284,10 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service \
     android.hardware.configstore@1.0-service
 
+# bluetooth
+PRODUCT_PACKAGES += \
+	android.hardware.bluetooth@1.0-service
+
 PRODUCT_PACKAGES += wcnss_service
 
 # FBE support

@@ -44,3 +44,4 @@ wigig                                          u:object_r:wigig_service:s0
 vendor.perfservice                             u:object_r:vendor_perf_service:s0
 wfdservice                                     u:object_r:wfdservice_service:s0
 omadm_service                                  u:object_r:omadm_service_service:s0
+lovd_device                                    u:object_r:lovd_device_service:s0

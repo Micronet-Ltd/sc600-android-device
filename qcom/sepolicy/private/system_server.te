@@ -42,7 +42,10 @@ add_service(system_server, regionalization_service);
 
 #Allow system_server to add and find perf service
 #add_service(system_server, vendor_perf_service);
+
 allow system_server vendor_perf_service:service_manager find;
+#add by xxf
+allow system_server lovd_device_service:service_manager { add };
 binder_call(system_server,qvrd);
 
 #Allow system_server to read, open and getattr vendor time NTP prop
