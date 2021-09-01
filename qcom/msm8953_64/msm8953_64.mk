@@ -1,6 +1,7 @@
 ALLOW_MISSING_DEPENDENCIES=true
 # Enable AVB 2.0
 ifneq ($(wildcard kernel/msm-4.9),)
+#BOARD_AVB_ENABLE ?= false
 BOARD_AVB_ENABLE := true
 # Enable chain partition for system, to facilitate system-only OTA in Treble.
 BOARD_AVB_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
@@ -94,16 +95,25 @@ PRODUCT_BRAND := TREQ
 #PRODUCT_MODEL := msm8953 for arm64
 #PRODUCT_VARIANT := $(shell echo $${PRODUCT_VARIANT})
 PRODUCT_VARIANT := smartcam
-#RODUCT_EXT_APK  := $(shell echo $${PRODUCT_EXT_APK})
-RODUCT_EXT_APK  := 
+RODUCT_EXT_APK  := $(shell echo $${PRODUCT_EXT_APK})
+PRODUCT_RB_OTA	:= $(shell echo $${PRODUCT_RB_OTA})
+#RODUCT_EXT_APK  := 
 ifeq ($(PRODUCT_VARIANT),smartcam)
 PRODUCT_MODEL := MSCAM
 DEVICE_NAME   := MSCAM
 ifeq ($(PRODUCT_EXT_APK),lm)
-PRODUCT_VER    := 11.0.0.6
+ifeq ($(PRODUCT_RB_OTA), enabled)
+PRODUCT_VER    := 11.0.1.16
+else
+PRODUCT_VER    := 31.0.1.16
+endif
 PRODUCT_EXT_APK := lm
 else
-PRODUCT_VER    := 10.0.0.6
+ifeq ($(PRODUCT_RB_OTA), enabled)
+PRODUCT_VER    := 10.0.1.16
+else
+PRODUCT_VER    := 30.0.1.16
+endif
 PRODUCT_EXT_APK :=
 endif
 PRODUCT_VARIANT := smartcam
@@ -117,11 +127,19 @@ else
 PRODUCT_MODEL := SmarTab-8
 DEVICE_NAME   := SmarTab-8
 ifeq ($(TARGET_BUILD_VARIANT),user)
-PRODUCT_VER    := 01.0.0.6
+ifeq ($(PRODUCT_RB_OTA), enabled)
+PRODUCT_VER    := 01.0.1.16
+else
+PRODUCT_VER    := 21.0.1.16
+endif
 PRODUCT_GMS_COMMON := true
 DISPLAY_BUILD_NUMBER := true
 else
-PRODUCT_VER    := 00.0.0.6
+ifeq ($(PRODUCT_RB_OTA), enabled)
+PRODUCT_VER    := 00.0.1.16
+else
+PRODUCT_VER    := 20.0.1.16
+endif
 PRODUCT_GMS_COMMON ?= false
 endif
 endif
@@ -282,6 +300,10 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-impl \
     android.hardware.light@2.0-service \
     android.hardware.configstore@1.0-service
+
+# bluetooth
+PRODUCT_PACKAGES += \
+	android.hardware.bluetooth@1.0-service
 
 PRODUCT_PACKAGES += wcnss_service
 
