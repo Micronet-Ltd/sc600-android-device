@@ -59,6 +59,7 @@ firmware_directories /vendor/firmware_mnt/image/
 /dev/synx_device          0660   root       camera
 
 #permissions for CSVT
+/dev/smd8                 0666   radio      radio
 /dev/smd11                0660   radio      radio
 
 #permsissions for BT/FM
@@ -408,3 +409,4 @@ firmware_directories /vendor/firmware_mnt/image/
 #QG device
 /dev/qg               0660   system     system
 /dev/qg_battery       0660   system     system
+/dev/pn544			  0660   nfc        nfc

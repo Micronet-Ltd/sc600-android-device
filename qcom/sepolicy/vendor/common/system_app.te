@@ -210,6 +210,7 @@ get_prop(system_app, vendor_radio_prop)
 get_prop(system_app, vendor_camera_prop)
 
 allow {system_server shell system_app} sysfs_quec:file rw_file_perms;
+allow system_app smd_device:chr_file {rw_file_perms ioctl};
 allow system_app sysfs_leds:dir r_dir_perms;
 allow {system_app -coredomain} sysfs_leds:file rw_file_perms;
 allow system_app sysfs_leds:lnk_file read;
