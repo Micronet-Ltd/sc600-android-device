@@ -228,6 +228,5 @@ persist.certification.mode=true
 
 #set screen rotate
 persist.demo.hdmirotates=true
-persist.panel.orientation=0
 
 persist.vendor.usb.config.extra=serial_cdev,diag
