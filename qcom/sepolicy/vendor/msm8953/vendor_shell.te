@@ -1,3 +1,4 @@
+typeattribute vendor_shell system_writes_vendor_properties_violators;
 # open to make kmsg available in user build
 # add neverallow exclusion for vendor_toolbox_exec in /system/sepolicy/public/vendor_toolbox.te and /system/sepolicy/prebuilts/api/28.0/public/vendor_toolbox.te
 #

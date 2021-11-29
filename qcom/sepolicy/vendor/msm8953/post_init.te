@@ -28,6 +28,7 @@
 
 type post_init, domain;
 type post_init_exec, exec_type, vendor_file_type,file_type;
+typeattribute post_init system_writes_vendor_properties_violators;
 
 init_daemon_domain(post_init)
 domain_auto_trans(init, post_init_exec, post_init)

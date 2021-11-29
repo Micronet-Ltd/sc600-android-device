@@ -25,6 +25,7 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+typeattribute shell system_writes_vendor_properties_violators;
 #allow shell hw_board_id:property_service set;
 allow shell proc_board_id:file r_file_perms;
 
@@ -37,7 +38,7 @@ allow shell proc_board_id:file r_file_perms;
 #allow shell vendor_toolbox_exec:file rx_file_perms;
 
 get_prop(shell, hw_board_id);
-#set_prop(shell, iodriver_boot_complete);
+set_prop(shell, iodriver_boot_complete);
 set_prop(shell, vib_set_profile);
 get_prop(shell, vib_set_profile);
 set_prop(shell, vib_get_profile);
