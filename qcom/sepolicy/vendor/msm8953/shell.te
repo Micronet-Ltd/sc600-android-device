@@ -38,3 +38,7 @@ allow shell proc_board_id:file r_file_perms;
 
 get_prop(shell, hw_board_id);
 #set_prop(shell, iodriver_boot_complete);
+set_prop(shell, vib_set_profile);
+get_prop(shell, vib_set_profile);
+set_prop(shell, vib_get_profile);
+get_prop(shell, vib_get_profile);

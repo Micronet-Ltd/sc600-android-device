@@ -37,3 +37,10 @@ get_prop(platform_app, iodriver_boot_complete);
 get_prop(platform_app, hw_build_version_mcu);
 get_prop(platform_app, hw_build_version_fpga);
 get_prop(platform_app, hw_board_id);
+set_prop(platform_app, vib_set_profile);
+get_prop(platform_app, vib_set_profile);
+set_prop(platform_app, vib_get_profile);
+get_prop(platform_app, vib_get_profile);
+
+set_prop(platform_app, powerctl_prop);
+get_prop(platform_app, powerctl_prop);

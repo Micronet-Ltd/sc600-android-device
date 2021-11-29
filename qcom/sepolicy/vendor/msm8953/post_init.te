@@ -40,3 +40,7 @@ allow post_init proc_board_id:file r_file_perms;
 
 set_prop(post_init, hw_board_id);
 set_prop(post_init, vendor_serialno);
+set_prop(post_init, vib_set_profile);
+get_prop(post_init, vib_set_profile);
+set_prop(post_init, vib_get_profile);
+get_prop(post_init, vib_get_profile);

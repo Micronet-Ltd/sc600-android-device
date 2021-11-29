@@ -7,4 +7,8 @@
 #r_dir_file(vendor_shell, proc_kmsg)
 allow vendor_shell proc_board_id:file r_file_perms;
 get_prop(vendor_shell, hw_board_id);
+set_prop(vendor_shell, vib_set_profile);
+get_prop(vendor_shell, vib_set_profile);
+set_prop(vendor_shell, vib_get_profile);
+get_prop(vendor_shell, vib_get_profile);
 

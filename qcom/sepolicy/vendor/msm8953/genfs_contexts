@@ -108,4 +108,5 @@ genfscon sysfs /devices/platform/soc/soc:watchdogpin/     	 u:object_r:sysfs_gpw
 genfscon proc  /board_id  					 u:object_r:proc_board_id:s0
 genfscon proc  /mcu_version  					 u:object_r:proc_board_id:s0
 genfscon proc  /fpga_version  					 u:object_r:proc_board_id:s0
+genfscon proc  /vib_profile  					 u:object_r:proc_board_id:s0
 
