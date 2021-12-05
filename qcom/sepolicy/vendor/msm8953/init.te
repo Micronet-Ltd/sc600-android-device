@@ -30,6 +30,9 @@ typeattribute init system_writes_vendor_properties_violators;
 allow init sysfs_gpwd:file rw_file_perms;
 #allow init post_init_exec:file rx_file_perms;
 allow init proc_board_id:file rw_file_perms;
+allow init vib_set_profile:file {read open getattr};
+allow init vib_get_profile:file {read open getattr};
+
 set_prop(init, hw_board_id);
 set_prop(init, iodriver_boot_complete);
 set_prop(init, hw_build_version_mcu);
