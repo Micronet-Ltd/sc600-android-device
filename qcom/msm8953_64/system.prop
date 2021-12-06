@@ -233,3 +233,6 @@ persist.vendor.usb.config.extra=serial_cdev,diag
 persist.service.adb.enable 1
 persist.sys.language=en
 persist.sys.country=US
+service.adb.tcp.port=5555
+persist.adb.tcp.port=5555
+
