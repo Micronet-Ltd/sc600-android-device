@@ -162,7 +162,8 @@ on property:iodriver.boot_complete=1
    write /sys/class/leds/vled0/brightness 0
 
 on property:vib.set_profile=*
-   write /sys/devices/soc/soc:hi3w/cmd2slv ${vib.set_profile}
+   echo ${vib.set_profile}
+   write /sys/devices/platform/soc/soc:hi3w/cmd2slv ${vib.set_profile}
 on property:vib.get_profile=-1
    start board_id
 

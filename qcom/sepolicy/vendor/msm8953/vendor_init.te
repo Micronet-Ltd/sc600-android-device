@@ -26,22 +26,18 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-type post_init, domain;
-type post_init_exec, exec_type, vendor_file_type,file_type;
-typeattribute post_init system_writes_vendor_properties_violators;
+typeattribute vendor_init system_writes_vendor_properties_violators;
 
-init_daemon_domain(post_init)
-domain_auto_trans(init, post_init_exec, post_init)
+allow vendor_init sysfs_gpwd:file rw_file_perms;
+allow vendor_init proc_board_id:file rw_file_perms;
+allow vendor_init vib_set_profile:file {read open getattr};
+allow vendor_init vib_get_profile:file {read open getattr};
 
-allow post_init post_init_exec:file { rx_file_perms entrypoint };
-allow post_init vendor_shell_exec:file {rx_file_perms entrypoint };
-allow post_init vendor_toolbox_exec:file  rx_file_perms;
-allow post_init { system_file rootfs vendor_shell_exec }:file execute_no_trans;
-allow post_init proc_board_id:file r_file_perms;
-
-set_prop(post_init, hw_board_id);
-set_prop(post_init, vendor_serialno);
-set_prop(post_init, vib_set_profile);
-get_prop(post_init, vib_set_profile);
-set_prop(post_init, vib_get_profile);
-get_prop(post_init, vib_get_profile);
+set_prop(vendor_init, hw_board_id);
+set_prop(vendor_init, iodriver_boot_complete);
+set_prop(vendor_init, hw_build_version_mcu);
+set_prop(vendor_init, hw_build_version_fpga);
+set_prop(vendor_init, vib_set_profile);
+get_prop(vendor_init, vib_set_profile);
+set_prop(vendor_init, vib_get_profile);
+get_prop(vendor_init, vib_get_profile);

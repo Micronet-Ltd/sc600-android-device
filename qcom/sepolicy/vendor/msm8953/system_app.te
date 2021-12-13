@@ -25,6 +25,7 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+typeattribute system_app system_writes_vendor_properties_violators;
 #for regionalization
 r_dir_file(system_app, vendor_carrier_file);
 allow system_app sysfs_vinputs:file r_file_perms;
@@ -34,3 +35,10 @@ allow system_app sysfs_dm:dir {search};
 allow system_app sysfs_dm:file r_file_perms;
 allow system_app proc_board_id:file r_file_perms;
 get_prop(system_app, hw_board_id);
+set_prop(system_app, vib_set_profile);
+get_prop(system_app, vib_set_profile);
+set_prop(system_app, vib_get_profile);
+get_prop(system_app, vib_get_profile);
+
+set_prop(system_app, powerctl_prop);
+get_prop(system_app, powerctl_prop);

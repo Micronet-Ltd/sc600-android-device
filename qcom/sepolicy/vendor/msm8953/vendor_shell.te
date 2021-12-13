@@ -1,3 +1,4 @@
+typeattribute vendor_shell system_writes_vendor_properties_violators;
 # open to make kmsg available in user build
 # add neverallow exclusion for vendor_toolbox_exec in /system/sepolicy/public/vendor_toolbox.te and /system/sepolicy/prebuilts/api/28.0/public/vendor_toolbox.te
 #
@@ -7,4 +8,8 @@
 #r_dir_file(vendor_shell, proc_kmsg)
 allow vendor_shell proc_board_id:file r_file_perms;
 get_prop(vendor_shell, hw_board_id);
+set_prop(vendor_shell, vib_set_profile);
+get_prop(vendor_shell, vib_set_profile);
+set_prop(vendor_shell, vib_get_profile);
+get_prop(vendor_shell, vib_get_profile);
 
