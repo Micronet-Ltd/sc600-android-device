@@ -1,4 +1,5 @@
 ALLOW_MISSING_DEPENDENCIES=true
+#TARGET_HAS_LOW_RAM := true
 # Enable AVB 2.0
 ifneq ($(wildcard kernel/msm-4.9),)
 #BOARD_AVB_ENABLE ?= false

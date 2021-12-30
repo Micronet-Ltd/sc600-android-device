@@ -217,7 +217,7 @@ CIMAX := libcimax_spi
 
 ifneq ($(TARGET_HAS_LOW_RAM),true)
 #CM
-CM :=CMFileManager
+#CM :=CMFileManager
 #CM += Trebuchet
 endif
 
@@ -901,17 +901,17 @@ PRODUCT_PACKAGES := \
     cit.xml \
     FactoryKit
 
-ifeq ($(TARGET_HAS_LOW_RAM),true)
+#ifeq ($(TARGET_HAS_LOW_RAM),true)
     DELAUN := Launcher3Go
-else
-    # Live Wallpapers
-    PRODUCT_PACKAGES += \
-            LiveWallpapers \
-            LiveWallpapersPicker \
-            VisualizationWallpapers
-
-    DELAUN := Launcher3
-endif
+#else
+#    # Live Wallpapers
+#    PRODUCT_PACKAGES += \
+#            LiveWallpapers \
+#            LiveWallpapersPicker \
+#            VisualizationWallpapers
+#
+#    DELAUN := Launcher3
+#endif
 
 PRODUCT_PACKAGES += $(ALSA_HARDWARE)
 PRODUCT_PACKAGES += $(ALSA_UCM)
