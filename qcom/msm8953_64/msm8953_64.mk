@@ -98,7 +98,7 @@ PRODUCT_BRAND := TREQ
 PRODUCT_VARIANT := smartcam
 RODUCT_EXT_APK  := $(shell echo $${PRODUCT_EXT_APK})
 PRODUCT_RB_OTA	:= $(shell echo $${PRODUCT_RB_OTA})
-#RODUCT_EXT_APK  := 
+PRODUCT_BOARD_V	:= $(shell echo $${PRODUCT_BOARD_VARIANT})
 ifeq ($(PRODUCT_VARIANT),smartcam)
 PRODUCT_MODEL := MSCAM
 DEVICE_NAME   := MSCAM
@@ -118,11 +118,22 @@ endif
 PRODUCT_EXT_APK :=
 endif
 PRODUCT_VARIANT := smartcam
-#ifeq ($(TARGET_BUILD_VARIANT),user)
-#    KERNEL_DEFCONFIG := msm8953_64_c801_sc-perf_defconfig
-#else
-#    KERNEL_DEFCONFIG := msm8953_64_c801_sc_defconfig
-#endif
+ifeq ($(TARGET_BUILD_VARIANT),user)
+ifeq ($(PRODUCT_BOARD_V), sb)
+    KERNEL_DEFCONFIG := msm8953-sb-perf_defconfig
+else
+    KERNEL_DEFCONFIG := msm8953-perf_defconfig
+endif
+else
+ifeq ($(PRODUCT_BOARD_V), sb)
+    KERNEL_DEFCONFIG := msm8953-sb_defconfig
+else
+    KERNEL_DEFCONFIG := msm8953_defconfig
+endif
+endif
+x := $(shell echo "Config selected:" ${KERNEL_DEFCONFIG})
+$(warning $x)
+
 PRODUCT_GMS_COMMON ?= false
 else
 PRODUCT_MODEL := SmarTab-8
