@@ -104,16 +104,16 @@ PRODUCT_MODEL := MSCAM
 DEVICE_NAME   := MSCAM
 ifeq ($(PRODUCT_EXT_APK),lm)
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 11.0.4.04
+PRODUCT_VER    := 11.0.4.05
 else
-PRODUCT_VER    := 31.0.4.04
+PRODUCT_VER    := 31.0.4.05
 endif
 PRODUCT_EXT_APK := lm
 else
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 10.0.4.04
+PRODUCT_VER    := 10.0.4.05
 else
-PRODUCT_VER    := 30.0.4.04
+PRODUCT_VER    := 30.0.4.05
 endif
 PRODUCT_EXT_APK :=
 endif
@@ -140,17 +140,17 @@ PRODUCT_MODEL := SmarTab-8
 DEVICE_NAME   := SmarTab-8
 ifeq ($(TARGET_BUILD_VARIANT),user)
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 01.0.4.04
+PRODUCT_VER    := 01.0.4.05
 else
-PRODUCT_VER    := 21.0.4.04
+PRODUCT_VER    := 21.0.4.05
 endif
 PRODUCT_GMS_COMMON := true
 DISPLAY_BUILD_NUMBER := true
 else
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 00.0.4.04
+PRODUCT_VER    := 00.0.4.05
 else
-PRODUCT_VER    := 20.0.4.04
+PRODUCT_VER    := 20.0.4.05
 endif
 PRODUCT_GMS_COMMON ?= false
 endif
@@ -501,7 +501,7 @@ ifeq ($(strip $(TARGET_KERNEL_VERSION)), 3.18)
 endif
 
 PRODUCT_PACKAGES += populate_board_id.sh
-ifeq ($(PRODUCT_BOARD_V), sb)
+ifneq ($(PRODUCT_BOARD_V), sb)
 PRODUCT_PACKAGES += iodriver recovery.iodriver
 endif
 
