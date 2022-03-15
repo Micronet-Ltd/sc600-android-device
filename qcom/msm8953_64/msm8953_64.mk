@@ -499,7 +499,12 @@ ifeq ($(strip $(TARGET_KERNEL_VERSION)), 3.18)
     ENABLE_EXTRA_VENDOR_LIBS := true
     PRODUCT_PACKAGES += vendor-extra-libs
 endif
-PRODUCT_PACKAGES += iodriver recovery.iodriver populate_board_id.sh
+
+PRODUCT_PACKAGES += populate_board_id.sh
+ifeq ($(PRODUCT_BOARD_V), sb)
+PRODUCT_PACKAGES += iodriver recovery.iodriver
+endif
+
 ifeq ($(PRODUCT_EXT_APK),lm)
 PRODUCT_PACKAGES += lm.smartcam.androidapp libLMLibEncDec libLMLibJni liblocee liblocee-jni 
 endif
