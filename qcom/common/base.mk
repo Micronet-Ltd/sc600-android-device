@@ -858,19 +858,23 @@ FD_LEAK := libc_leak_detector
 
 TELEPHONY_DBG := NrNetworkSettingApp
 
+#    DeskClock \
+#    Calendar \
+#    Calculator \
+#    QuickSearchBox \
+#    Email \
+#    FM2 \
+#    FMRecord
+
 PRODUCT_PACKAGES := \
     AccountAndSyncSettings \
-    DeskClock \
     AlarmProvider \
     Bluetooth \
     BluetoothExt \
-    Calculator \
-    Calendar \
     Camera \
     CellBroadcastReceiver \
     CertInstaller \
     DrmProvider \
-    Email \
     Gallery2 \
     LatinIME \
     Music \
@@ -878,7 +882,6 @@ PRODUCT_PACKAGES := \
     Phone \
     Provision \
     Protips \
-    QuickSearchBox \
     Settings \
     Sync \
     SystemUI \
@@ -888,8 +891,6 @@ PRODUCT_PACKAGES := \
     SoundRecorder \
     IM \
     VoiceDialer \
-    FM2 \
-    FMRecord \
     SnapdragonGallery \
     SnapdragonMusic \
     VideoEditor \
