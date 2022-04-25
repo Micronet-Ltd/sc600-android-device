@@ -864,7 +864,8 @@ TELEPHONY_DBG := NrNetworkSettingApp
 #    QuickSearchBox \
 #    Email \
 #    FM2 \
-#    FMRecord
+#    FMRecord \
+#    VoiceDialer
 
 PRODUCT_PACKAGES := \
     AccountAndSyncSettings \
@@ -890,7 +891,6 @@ PRODUCT_PACKAGES := \
     SyncProvider \
     SoundRecorder \
     IM \
-    VoiceDialer \
     SnapdragonGallery \
     SnapdragonMusic \
     VideoEditor \
