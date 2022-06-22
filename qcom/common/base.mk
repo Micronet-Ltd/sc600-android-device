@@ -217,7 +217,7 @@ CIMAX := libcimax_spi
 
 ifneq ($(TARGET_HAS_LOW_RAM),true)
 #CM
-CM :=CMFileManager
+#CM :=CMFileManager
 #CM += Trebuchet
 endif
 
@@ -858,19 +858,24 @@ FD_LEAK := libc_leak_detector
 
 TELEPHONY_DBG := NrNetworkSettingApp
 
+#    DeskClock \
+#    Calendar \
+#    Calculator \
+#    QuickSearchBox \
+#    Email \
+#    FM2 \
+#    FMRecord \
+#    VoiceDialer
+
 PRODUCT_PACKAGES := \
     AccountAndSyncSettings \
-    DeskClock \
     AlarmProvider \
     Bluetooth \
     BluetoothExt \
-    Calculator \
-    Calendar \
     Camera \
     CellBroadcastReceiver \
     CertInstaller \
     DrmProvider \
-    Email \
     Gallery2 \
     LatinIME \
     Music \
@@ -878,7 +883,6 @@ PRODUCT_PACKAGES := \
     Phone \
     Provision \
     Protips \
-    QuickSearchBox \
     Settings \
     Sync \
     SystemUI \
@@ -887,9 +891,6 @@ PRODUCT_PACKAGES := \
     SyncProvider \
     SoundRecorder \
     IM \
-    VoiceDialer \
-    FM2 \
-    FMRecord \
     SnapdragonGallery \
     SnapdragonMusic \
     VideoEditor \
@@ -901,17 +902,17 @@ PRODUCT_PACKAGES := \
     cit.xml \
     FactoryKit
 
-ifeq ($(TARGET_HAS_LOW_RAM),true)
+#ifeq ($(TARGET_HAS_LOW_RAM),true)
     DELAUN := Launcher3Go
-else
-    # Live Wallpapers
-    PRODUCT_PACKAGES += \
-            LiveWallpapers \
-            LiveWallpapersPicker \
-            VisualizationWallpapers
-
-    DELAUN := Launcher3
-endif
+#else
+#    # Live Wallpapers
+#    PRODUCT_PACKAGES += \
+#            LiveWallpapers \
+#            LiveWallpapersPicker \
+#            VisualizationWallpapers
+#
+#    DELAUN := Launcher3
+#endif
 
 PRODUCT_PACKAGES += $(ALSA_HARDWARE)
 PRODUCT_PACKAGES += $(ALSA_UCM)

@@ -42,7 +42,7 @@ PRODUCT_PRIVATE_KEY := device/qcom/common/qcom.key
 
 ifneq ($(TARGET_DEFINES_DALVIK_HEAP), true)
 ifneq ($(TARGET_HAS_LOW_RAM), true)
-$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
+#$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 endif
 endif
 $(call inherit-product-if-exists, device/qcom/common/recovery/redbend/rb_ua.mk)
