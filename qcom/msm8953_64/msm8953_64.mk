@@ -1,4 +1,5 @@
 ALLOW_MISSING_DEPENDENCIES=true
+#TARGET_HAS_LOW_RAM := true
 # Enable AVB 2.0
 ifneq ($(wildcard kernel/msm-4.9),)
 #BOARD_AVB_ENABLE ?= false
@@ -97,48 +98,59 @@ PRODUCT_BRAND := TREQ
 PRODUCT_VARIANT := smartcam
 RODUCT_EXT_APK  := $(shell echo $${PRODUCT_EXT_APK})
 PRODUCT_RB_OTA	:= $(shell echo $${PRODUCT_RB_OTA})
-#RODUCT_EXT_APK  := 
+PRODUCT_BOARD_V	:= $(shell echo $${PRODUCT_BOARD_VARIANT})
 ifeq ($(PRODUCT_VARIANT),smartcam)
 PRODUCT_MODEL := MSCAM
 DEVICE_NAME   := MSCAM
 ifeq ($(PRODUCT_EXT_APK),lm)
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 11.0.4.00
+PRODUCT_VER    := 11.0.5.00
 else
-PRODUCT_VER    := 31.0.4.00
+PRODUCT_VER    := 31.0.5.00
 endif
 PRODUCT_EXT_APK := lm
 else
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 10.0.4.00
+PRODUCT_VER    := 10.0.5.00
 else
-PRODUCT_VER    := 30.0.4.00
+PRODUCT_VER    := 30.0.5.00
 endif
 PRODUCT_EXT_APK :=
 endif
 PRODUCT_VARIANT := smartcam
-#ifeq ($(TARGET_BUILD_VARIANT),user)
-#    KERNEL_DEFCONFIG := msm8953_64_c801_sc-perf_defconfig
-#else
-#    KERNEL_DEFCONFIG := msm8953_64_c801_sc_defconfig
-#endif
+ifeq ($(TARGET_BUILD_VARIANT),user)
+ifeq ($(PRODUCT_BOARD_V), sb)
+    KERNEL_DEFCONFIG := msm8953-sb-perf_defconfig
+else
+    KERNEL_DEFCONFIG := msm8953-perf_defconfig
+endif
+else
+ifeq ($(PRODUCT_BOARD_V), sb)
+    KERNEL_DEFCONFIG := msm8953-sb_defconfig
+else
+    KERNEL_DEFCONFIG := msm8953_defconfig
+endif
+endif
+x := $(shell echo "Config selected:" ${KERNEL_DEFCONFIG})
+$(warning $x)
+
 PRODUCT_GMS_COMMON ?= false
 else
 PRODUCT_MODEL := SmarTab-8
 DEVICE_NAME   := SmarTab-8
 ifeq ($(TARGET_BUILD_VARIANT),user)
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 01.0.4.00
+PRODUCT_VER    := 01.0.5.00
 else
-PRODUCT_VER    := 21.0.4.00
+PRODUCT_VER    := 21.0.5.00
 endif
 PRODUCT_GMS_COMMON := true
 DISPLAY_BUILD_NUMBER := true
 else
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 00.0.4.00
+PRODUCT_VER    := 00.0.5.00
 else
-PRODUCT_VER    := 20.0.4.00
+PRODUCT_VER    := 20.0.5.00
 endif
 PRODUCT_GMS_COMMON ?= false
 endif
@@ -487,9 +499,14 @@ ifeq ($(strip $(TARGET_KERNEL_VERSION)), 3.18)
     ENABLE_EXTRA_VENDOR_LIBS := true
     PRODUCT_PACKAGES += vendor-extra-libs
 endif
-PRODUCT_PACKAGES += iodriver recovery.iodriver populate_board_id.sh
+
+PRODUCT_PACKAGES += populate_board_id.sh
+ifneq ($(PRODUCT_BOARD_V), sb)
+PRODUCT_PACKAGES += iodriver recovery.iodriver
+endif
+
 ifeq ($(PRODUCT_EXT_APK),lm)
 PRODUCT_PACKAGES += lm.smartcam.androidapp libLMLibEncDec libLMLibJni liblocee liblocee-jni 
 endif
-#PRODUCT_PACKAGES += modemconfigapps
+PRODUCT_PACKAGES += modemconfigapp
 PRODUCT_PACKAGES += bootanimation.zip
