@@ -225,16 +225,6 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
            <instance>default</instance>
        </interface>
     </hal>
-   <hal format="hidl">
-       <name>android.hardware.secure_element</name>
-       <transport>hwbinder</transport>
-       <version>1.0</version>
-       <interface>
-           <name>ISecureElement</name>
-           <instance>SIM1</instance>
-           <instance>SIM2</instance>
-       </interface>
-    </hal>
     <hal format="hidl">
        <name>vendor.qti.hardware.radio.am</name>
         <transport>hwbinder</transport>
@@ -491,20 +481,19 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <hal format="hidl">
         <name>android.hardware.nfc</name>
         <transport>hwbinder</transport>
+        <impl level="generic"></impl>
         <version>1.1</version>
         <interface>
             <name>INfc</name>
             <instance>default</instance>
+            <instance>nfc_nci</instance>
         </interface>
     </hal>
     <hal format="hidl">
-        <name>vendor.nxp.hardware.nfc</name>
+        <name>vendor.nxp.nxpnfc</name>
         <transport>hwbinder</transport>
+        <impl level="generic"></impl>
         <version>1.0</version>
-        <interface>
-            <name>INqNfc</name>
-            <instance>default</instance>
-        </interface>
     </hal>
    <!-- IMS UCE Service -->
    <hal format="hidl">
