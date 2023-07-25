@@ -36,6 +36,26 @@ allow shell proc_board_id:file r_file_perms;
 #allow shell kmsg_device:chr_file r_file_perms;
 #allow shell kernel:system syslog_read;
 #allow shell vendor_toolbox_exec:file rx_file_perms;
+allow shell self:socket { create_socket_perms_no_ioctl ioctl };
+allowxperm shell self:udp_socket ioctl { SIOCGIFINDEX SIOCGIFNAME };
+allowxperm shell self:socket ioctl { SIOCGIFINDEX SIOCGIFNAME };
+
+allow shell vendor_can:file {read open getattr};
+allow shell vendor_can_set_bitrate:file {read open getattr};
+allow shell vendor_can_set_op_mode:file {read open getattr};
+allow shell vendor_can_masks:file {read open getattr};
+allow shell vendor_can_filters:file {read open getattr};
+
+get_prop(shell, vendor_can_masks);
+set_prop(shell, vendor_can_masks);
+get_prop(shell, vendor_can_filters);
+set_prop(shell, vendor_can_filters);
+get_prop(shell, vendor_can_set_op_mode);
+set_prop(shell, vendor_can_set_op_mode);
+get_prop(shell, vendor_can_set_bitrate);
+set_prop(shell, vendor_can_set_bitrate);
+get_prop(shell, vendor_can);
+set_prop(shell, vendor_can);
 
 get_prop(shell, hw_board_id);
 set_prop(shell, iodriver_boot_complete);

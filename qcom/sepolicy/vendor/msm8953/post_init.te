@@ -37,7 +37,28 @@ allow post_init post_init_exec:file { rx_file_perms entrypoint };
 allow post_init vendor_shell_exec:file {rx_file_perms entrypoint };
 allow post_init vendor_toolbox_exec:file  rx_file_perms;
 allow post_init { system_file rootfs vendor_shell_exec }:file execute_no_trans;
+allow post_init self:socket { create_socket_perms_no_ioctl ioctl };
+allowxperm post_init self:udp_socket ioctl { SIOCGIFINDEX SIOCGIFNAME };
+allowxperm post_init self:socket ioctl { SIOCGIFINDEX SIOCGIFNAME };
+allow post_init self:netlink_route_socket { create getopt setopt getattr setattr append bind connect read write nlmsg_write nlmsg_read };
 allow post_init proc_board_id:file r_file_perms;
+allow post_init vendor_can:file {read open getattr};
+allow post_init vendor_can_set_bitrate:file {read open getattr};
+allow post_init vendor_can_set_op_mode:file {read open getattr};
+allow post_init vendor_can_masks:file {read open getattr};
+allow post_init vendor_can_filters:file {read open getattr};
+
+get_prop(post_init, vendor_can_masks);
+set_prop(post_init, vendor_can_masks);
+get_prop(post_init, vendor_can_filters);
+set_prop(post_init, vendor_can_filters);
+get_prop(post_init, vendor_can_set_op_mode);
+set_prop(post_init, vendor_can_set_op_mode);
+get_prop(post_init, vendor_can_set_bitrate);
+set_prop(post_init, vendor_can_set_bitrate);
+
+get_prop(post_init, vendor_can);
+set_prop(post_init, vendor_can);
 
 set_prop(post_init, hw_board_id);
 set_prop(post_init, vendor_serialno);

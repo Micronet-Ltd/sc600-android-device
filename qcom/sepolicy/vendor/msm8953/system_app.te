@@ -28,12 +28,33 @@
 typeattribute system_app system_writes_vendor_properties_violators;
 #for regionalization
 r_dir_file(system_app, vendor_carrier_file);
+allow system_app self:socket { create_socket_perms_no_ioctl ioctl };
+allowxperm system_app self:udp_socket ioctl { SIOCGIFINDEX SIOCGIFNAME };
+allowxperm system_app self:socket ioctl { SIOCGIFINDEX SIOCGIFNAME };
+
 allow system_app sysfs_vinputs:file r_file_perms;
 allow system_app sysfs_vinputs:dir r_dir_perms;
 allow system_app sysfs_vinputs:lnk_file r_file_perms;
 allow system_app sysfs_dm:dir {search};
 allow system_app sysfs_dm:file r_file_perms;
 allow system_app proc_board_id:file r_file_perms;
+allow system_app vendor_can:file {read open getattr};
+allow system_app vendor_can_set_bitrate:file {read open getattr};
+allow system_app vendor_can_set_op_mode:file {read open getattr};
+allow system_app vendor_can_masks:file {read open getattr};
+allow system_app vendor_can_filters:file {read open getattr};
+
+get_prop(system_app, vendor_can_masks);
+set_prop(system_app, vendor_can_masks);
+get_prop(system_app, vendor_can_filters);
+set_prop(system_app, vendor_can_filters);
+get_prop(system_app, vendor_can_set_op_mode);
+set_prop(system_app, vendor_can_set_op_mode);
+get_prop(system_app, vendor_can_set_bitrate);
+set_prop(system_app, vendor_can_set_bitrate);
+get_prop(system_app, vendor_can);
+set_prop(system_app, vendor_can);
+
 get_prop(system_app, hw_board_id);
 set_prop(system_app, vib_set_profile);
 get_prop(system_app, vib_set_profile);

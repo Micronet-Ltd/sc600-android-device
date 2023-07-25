@@ -28,11 +28,29 @@
 
 typeattribute vendor_init system_writes_vendor_properties_violators;
 
+allow vendor_init self:socket { create_socket_perms_no_ioctl ioctl };
+allowxperm vendor_init self:udp_socket ioctl { SIOCGIFINDEX SIOCGIFNAME };
+allowxperm vendor_init self:socket ioctl { SIOCGIFINDEX SIOCGIFNAME };
+
 allow vendor_init sysfs_gpwd:file rw_file_perms;
 allow vendor_init proc_board_id:file rw_file_perms;
 allow vendor_init vib_set_profile:file {read open getattr};
 allow vendor_init vib_get_profile:file {read open getattr};
 
+allow vendor_init vendor_can:file {read open getattr};
+allow vendor_init vendor_can_set_bitrate:file {read open getattr};
+allow vendor_init vendor_can_set_op_mode:file {read open getattr};
+allow vendor_init vendor_can_masks:file {read open getattr};
+allow vendor_init vendor_can_filters:file {read open getattr};
+
+get_prop(vendor_init, vendor_can_masks);
+set_prop(vendor_init, vendor_can_masks);
+get_prop(vendor_init, vendor_can_filters);
+set_prop(vendor_init, vendor_can_filters);
+get_prop(vendor_init, vendor_can_set_op_mode);
+set_prop(vendor_init, vendor_can_set_op_mode);
+get_prop(vendor_init, vendor_can_set_bitrate);
+set_prop(vendor_init, vendor_can_set_bitrate);
 set_prop(vendor_init, hw_board_id);
 set_prop(vendor_init, iodriver_boot_complete);
 set_prop(vendor_init, hw_build_version_mcu);
@@ -41,3 +59,5 @@ set_prop(vendor_init, vib_set_profile);
 get_prop(vendor_init, vib_set_profile);
 set_prop(vendor_init, vib_get_profile);
 get_prop(vendor_init, vib_get_profile);
+get_prop(vendor_init, vendor_can);
+set_prop(vendor_init, vendor_can);

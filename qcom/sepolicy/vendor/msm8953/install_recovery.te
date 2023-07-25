@@ -1,0 +1,57 @@
+typeattribute install_recovery system_writes_vendor_properties_violators;
+allow install_recovery storage_file:dir search;
+allow install_recovery storage_file:file rw_file_perms;
+allow install_recovery storage_file:dir rw_dir_perms;
+allow install_recovery storage_file:lnk_file rw_file_perms;
+allow install_recovery mnt_user_file:lnk_file { read };
+allow install_recovery mnt_user_file:dir { search };
+allow install_recovery sdcardfs:dir { create search open read write remove_name add_name };
+allow install_recovery sdcardfs:file { create getattr open read write append unlink setattr rename };
+allow install_recovery media_rw_data_file:dir { create getattr search open read write remove_name add_name};
+allow install_recovery media_rw_data_file:file { create getattr setattr open read write unlink append rename };
+
+set_prop(install_recovery, persist_vendor_ota_status);
+get_prop(install_recovery, persist_vendor_ota_status);
+
+#get_prop(install_recovery, hw_build_version_mcu);
+#get_prop(install_recovery, hw_build_version_fpga);
+#allow install_recovery netd:fd use
+
+allow install_recovery self:tcp_socket { connect create getattr getopt setopt read write };
+allow install_recovery self:udp_socket { connect create getattr setattr bind name_bind node_bind };
+allow install_recovery self:capability { chown net_raw fsetid };
+allow install_recovery dnsproxyd_socket:sock_file { read write };
+
+allow install_recovery port:udp_socket { name_bind node_bind };
+allow install_recovery node:udp_socket { name_bind node_bind };
+allow install_recovery netd:unix_stream_socket { connectto };
+allow install_recovery fwmarkd_socket:sock_file { write };
+allow install_recovery port:tcp_socket { name_connect };
+allow install_recovery system_server:binder { transfer call };
+
+allow install_recovery netd:fd use;
+allow install_recovery self:fd use;
+
+allow install_recovery servicemanager:binder { call };
+allow install_recovery proc_version:file r_file_perms;
+
+allow install_recovery package_service:service_manager { find };
+allow install_recovery radio_service:service_manager { find };
+allow install_recovery radio:binder { call };
+
+allow install_recovery selinuxfs:dir { search open read};
+allow install_recovery selinuxfs:file { read open write };
+
+allow install_recovery self:netlink_selinux_socket { create bind };
+allow install_recovery kernel:security { compute_av };
+
+#for reset
+#allow install_recovery powerctl_prop:property_service { set };
+set_prop(install_recovery, powerctl_prop)
+
+#for sending intents
+allow install_recovery activity_service:service_manager { find };
+
+#for ignition
+allow install_recovery sysfs_switch_dock:dir { search };
+allow install_recovery sysfs_switch_dock:lnk_file { read };
