@@ -145,16 +145,16 @@ PRODUCT_MODEL := MSCAM
 DEVICE_NAME   := MSCAM
 ifeq ($(PRODUCT_EXT_APK),lm)
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 11.0.5.05
+PRODUCT_VER    := 11.1.0.00
 else
-PRODUCT_VER    := 31.0.5.05
+PRODUCT_VER    := 31.1.0.00
 endif
 PRODUCT_EXT_APK := lm
 else
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 10.0.5.05
+PRODUCT_VER    := 10.1.0.00
 else
-PRODUCT_VER    := 30.0.5.05
+PRODUCT_VER    := 30.1.0.00
 endif
 PRODUCT_EXT_APK :=
 endif
@@ -181,17 +181,17 @@ PRODUCT_MODEL := SmarTab-8
 DEVICE_NAME   := SmarTab-8
 ifeq ($(TARGET_BUILD_VARIANT),user)
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 01.0.5.05
+PRODUCT_VER    := 01.1.0.00
 else
-PRODUCT_VER    := 21.0.5.05
+PRODUCT_VER    := 21.1.0.00
 endif
 PRODUCT_GMS_COMMON := true
 DISPLAY_BUILD_NUMBER := true
 else
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 00.0.5.05
+PRODUCT_VER    := 00.1.0.00
 else
-PRODUCT_VER    := 20.0.5.05
+PRODUCT_VER    := 20.1.0.00
 endif
 PRODUCT_GMS_COMMON ?= false
 endif
