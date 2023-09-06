@@ -44,7 +44,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libnfc-nci \
     NfcNci \
-    Tag \
     android.hardware.nfc@1.0-impl \
     libpn548ad_fw.so \
     nfc_nci.$(NXP_NFC_PLATFORM)
@@ -145,16 +144,16 @@ PRODUCT_MODEL := MSCAM
 DEVICE_NAME   := MSCAM
 ifeq ($(PRODUCT_EXT_APK),lm)
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 11.1.0.01
+PRODUCT_VER    := 11.1.0.03
 else
-PRODUCT_VER    := 31.1.0.01
+PRODUCT_VER    := 31.1.0.03
 endif
 PRODUCT_EXT_APK := lm
 else
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 10.1.0.01
+PRODUCT_VER    := 10.1.0.03
 else
-PRODUCT_VER    := 30.1.0.01
+PRODUCT_VER    := 30.1.0.03
 endif
 PRODUCT_EXT_APK :=
 endif
@@ -181,17 +180,17 @@ PRODUCT_MODEL := SmarTab-8
 DEVICE_NAME   := SmarTab-8
 ifeq ($(TARGET_BUILD_VARIANT),user)
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 01.1.0.01
+PRODUCT_VER    := 01.1.0.03
 else
-PRODUCT_VER    := 21.1.0.01
+PRODUCT_VER    := 21.1.0.03
 endif
 PRODUCT_GMS_COMMON := true
 DISPLAY_BUILD_NUMBER := true
 else
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 00.1.0.01
+PRODUCT_VER    := 00.1.0.03
 else
-PRODUCT_VER    := 20.1.0.01
+PRODUCT_VER    := 20.1.0.03
 endif
 PRODUCT_GMS_COMMON ?= false
 endif
