@@ -27,11 +27,32 @@
 
 typeattribute init system_writes_vendor_properties_violators;
 
+allow init self:socket { create_socket_perms_no_ioctl ioctl };
+allowxperm init self:udp_socket ioctl { SIOCGIFINDEX SIOCGIFNAME };
+allowxperm init self:socket ioctl { SIOCGIFINDEX SIOCGIFNAME };
+
 allow init sysfs_gpwd:file rw_file_perms;
 #allow init post_init_exec:file rx_file_perms;
 allow init proc_board_id:file rw_file_perms;
 allow init vib_set_profile:file {read open getattr};
 allow init vib_get_profile:file {read open getattr};
+
+allow init vendor_can:file {read open getattr};
+allow init vendor_can_set_bitrate:file {read open getattr};
+allow init vendor_can_set_op_mode:file {read open getattr};
+allow init vendor_can_masks:file {read open getattr};
+allow init vendor_can_filters:file {read open getattr};
+
+get_prop(init, vendor_can_masks);
+set_prop(init, vendor_can_masks);
+get_prop(init, vendor_can_filters);
+set_prop(init, vendor_can_filters);
+get_prop(init, vendor_can_set_op_mode);
+set_prop(init, vendor_can_set_op_mode);
+get_prop(init, vendor_can_set_bitrate);
+set_prop(init, vendor_can_set_bitrate);
+get_prop(init, vendor_can);
+set_prop(init, vendor_can);
 
 set_prop(init, hw_board_id);
 set_prop(init, iodriver_boot_complete);

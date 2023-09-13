@@ -103,6 +103,12 @@ on post-fs-data
     chmod 0666 /sys/class/leds/vled0/brightness
     chmod 0666 /sys/class/leds/vled1/brightness
     chmod 0666 /sys/class/leds/aled/brightness
+    setprop ro.nfc.port "I2C"
+    mkdir /data/vendor 0777 nfc nfc
+    mkdir /data/vendor/nfc 0777 nfc nfc
+    mkdir /data/vendor/nfc/param 0777 nfc nfc
+    chmod 0660 /dev/pn544
+    chown nfc nfc /dev/pn544
     mkdir /data/vendor/tloc 0700 system drmrpc
 
 
@@ -156,6 +162,7 @@ on property:sys.boot_completed=1
    start board_id
    start iodriver
    start suspend_service
+   start check-upd
 
 on property:iodriver.boot_complete=1
    write /sys/class/leds/vled1/brightness 0
@@ -278,6 +285,9 @@ on boot
     chmod 0666 /sys/class/leds/blue/brightness
     chmod 0666 /sys/class/leds/green/brightness
     chmod 0666 /sys/class/leds/red/brightness
+    chmod 0666 /sys/class/leds/blue-2/brightness
+    chmod 0666 /sys/class/leds/green-2/brightness
+    chmod 0666 /sys/class/leds/red-2/brightness
 
 # access permission for wlan
     chown system system /mnt/vendor/persist/WCNSS_qcom_wlan_nv.bin
@@ -457,3 +467,139 @@ service vendor.tlocd /vendor/bin/tloc_daemon
     class late_start
     user system
     group drmrpc gps net_raw
+
+#ota service properties
+on property:persist.vendor.ota.status=init
+    start check-upd
+
+on property:persist.vendor.ota.status=manualInit
+    start check-upd
+
+service check-upd /system/bin/checkForUpdates.sh
+    class main
+    user root
+    group root system
+    seclabel u:r:install_recovery:s0
+    disabled
+    oneshot
+    
+on property:persist.vendor.ota.status=copyApp
+    start copy-App
+    
+on property:persist.vendor.ota.status=manualCopyApp
+    start copy-App    
+
+service copy-App /system/bin/copyApp.sh
+    class late_start
+    user root
+    group root system
+    seclabel u:r:dumpstate:s0
+    disabled
+    oneshot
+
+on property:persist.vendor.ota.status=download
+    start download-ota
+    
+on property:persist.vendor.ota.status=manualDownload
+    start download-ota
+
+service download-ota /system/bin/download.sh
+    class late_start
+    user root
+    seclabel u:r:installd:s0
+    group root system
+    disabled
+    oneshot
+    
+on property:persist.vendor.ota.status=update
+    start update-ota
+    
+on property:persist.vendor.ota.status=manualUpdate
+    start update-ota
+
+service update-ota /system/bin/update.sh
+    class late_start
+    user root
+    seclabel u:r:install_recovery:s0
+    group root system
+    disabled
+    oneshot
+
+on property:persist.vendor.ota.status=updateResult
+    start update-result
+    
+on property:persist.vendor.ota.status=manualUpdateResult
+    start update-result
+
+service update-result /system/bin/updateResult.sh
+    class late_start
+    user root
+    seclabel u:r:installd:s0
+    group root system
+    disabled
+    oneshot
+
+on property:persist.vendor.ota.status=manualInstall
+    start manual-install
+
+service manual-install /system/bin/install.sh
+    class late_start
+    user root
+    seclabel u:r:install_recovery:s0
+    group root system
+    disabled
+    oneshot
+
+on property:persist.vendor.ota.status=logCopy
+    start log-copy
+    
+on property:persist.vendor.ota.status=manualLogCopy
+    start log-copy
+
+service log-copy /system/bin/logCopy.sh
+    class late_start
+    user root
+    seclabel u:r:dumpstate:s0
+    group root system
+    disabled
+    oneshot
+
+on property:persist.vendor.ota.status=get
+    start get-file
+    
+on property:persist.vendor.ota.status=manualGet
+    start get-file
+
+service get-file /system/bin/get.sh
+    class late_start
+    user root
+    seclabel u:r:dumpstate:s0
+    group root system
+    disabled
+    oneshot
+
+on property:vendor.can=*
+   write /dev/kmsg "can0"
+   write /dev/kmsg ${vendor.can}
+   exec u:r:qti_init_shell:s0 -- /vendor/bin/start_can.sh
+
+on property:vendor.can.set_bitrate=*
+   write /dev/kmsg "can0 bitrate"
+   write /dev/kmsg ${vendor.can.set_bitrate}
+   exec u:r:qti_init_shell:s0 -- /vendor/bin/set_can_bitrate.sh
+
+on property:vendor.can.set_op_mode=*
+   write /dev/kmsg "can0 listen only"
+   write /dev/kmsg ${vendor.can.set_op_mode}
+   exec u:r:qti_init_shell:s0 -- /vendor/bin/set_can_mode.sh
+
+on property:vendor.can.masks=*
+   write /dev/kmsg "can0 masks"
+   write /dev/kmsg ${vendor.can.masks}
+   exec u:r:qti_init_shell:s0 -- /vendor/bin/set_can_masks.sh
+
+on property:vendor.can.filters=*
+   write /dev/kmsg "can0 filters"
+   write /dev/kmsg ${vendor.can.filters}
+   exec u:r:qti_init_shell:s0 -- /vendor/bin/set_can_filters.sh
+

@@ -26,6 +26,7 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 typeattribute qti_init_shell system_writes_vendor_properties_violators;
+typeattribute qti_init_shell vendor_executes_system_violators;
 
 allow qti_init_shell {
     vendor_media_msm8953_version_prop
@@ -37,4 +38,35 @@ allow qti_init_shell regionalization_file:file create_file_perms;
 
 set_prop(qti_init_shell, vib_get_profile);
 get_prop(qti_init_shell, vib_get_profile);
+
+allow qti_init_shell shell_exec:file {getattr read execute};
+allow qti_init_shell toolbox_exec:file {getattr open read execute};
+allow qti_init_shell { toolbox_exec }:file execute_no_trans;
+allow qti_init_shell system_file:file { getattr read open execute_no_trans execute };
+allow qti_init_shell self:netlink_route_socket { create getopt setopt getattr setattr append bind connect read write nlmsg_write nlmsg_read };
+allow qti_init_shell self:udp_socket { create ioctl };
+allow qti_init_shell self:capability { net_raw };
+#allow qti_init_shell self:socket { create ioctl };
+#allow qti_init_shell self:packet_socket { create ioctl };
+allowxperm qti_init_shell self:udp_socket ioctl priv_sock_ioctls;
+allowxperm qti_init_shell self:udp_socket ioctl { SIOCSIFFLAGS SIOCGIFINDEX };
+
+allow qti_init_shell sysfs_net:file rw_file_perms;
+allow qti_init_shell sysfs_can:file rw_file_perms;
+allow qti_init_shell vendor_can:file {read open getattr};
+allow qti_init_shell vendor_can_set_bitrate:file {read open getattr};
+allow qti_init_shell vendor_can_set_op_mode:file {read open getattr};
+allow qti_init_shell vendor_can_masks:file {read open getattr};
+allow qti_init_shell vendor_can_filters:file {read open getattr};
+
+get_prop(qti_init_shell, vendor_can_masks);
+set_prop(qti_init_shell, vendor_can_masks);
+get_prop(qti_init_shell, vendor_can_filters);
+set_prop(qti_init_shell, vendor_can_filters);
+get_prop(qti_init_shell, vendor_can_set_op_mode);
+set_prop(qti_init_shell, vendor_can_set_op_mode);
+get_prop(qti_init_shell, vendor_can_set_bitrate);
+set_prop(qti_init_shell, vendor_can_set_bitrate);
+get_prop(qti_init_shell, vendor_can);
+set_prop(qti_init_shell, vendor_can);
 

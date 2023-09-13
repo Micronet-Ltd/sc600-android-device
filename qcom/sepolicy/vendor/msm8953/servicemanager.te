@@ -1,0 +1,3 @@
+allow servicemanager install_recovery:dir { search };
+allow servicemanager install_recovery:dir { open read };
+ 

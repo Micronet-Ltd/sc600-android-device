@@ -32,11 +32,6 @@ service fastmmi /system/bin/mmi
     group root
     disabled
 
-service quecserver /system/bin/QuecServer
-    user root
-    group root
-    disabled
-    
 service vendor.mmid /vendor/bin/mmid
     user root
     group root

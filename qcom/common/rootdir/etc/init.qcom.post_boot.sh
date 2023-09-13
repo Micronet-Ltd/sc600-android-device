@@ -2310,7 +2310,7 @@ case "$target" in
                 # Start Host based Touch processing
                 case "$hw_platform" in
                     "MTP" | "Surf" | "RCM" | "QRD" )
-                    start_hbtp
+                    # start_hbtp
                 ;;
                 esac
 
@@ -2451,7 +2451,7 @@ case "$target" in
                 # Start Host based Touch processing
                 case "$hw_platform" in
                     "QRD" )
-                    start_hbtp
+                    # start_hbtp
                 ;;
                 esac
 	    ;;

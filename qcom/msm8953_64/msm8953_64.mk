@@ -23,7 +23,45 @@ endif
 
 DEVICE_PACKAGE_OVERLAYS := device/qcom/msm8953_64/overlay
 
-TARGET_USES_NQ_NFC := true
+TARGET_USES_NQ_NFC := false
+
+ifeq ($(TARGET_USES_NQ_NFC),false)
+NXP_NFC_HOST := $(TARGET_PRODUCT)
+NXP_NFC_HW := pn7150
+NXP_NFC_PLATFORM := pn54x
+NXP_VENDOR_DIR := nxp
+# These are the hardware-specific features
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
+    frameworks/native/data/etc/android.hardware.nfc.hcef.xml:system/etc/permissions/android.hardware.nfc.hcef.xml \
+    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml
+
+# NFC config files
+PRODUCT_COPY_FILES += \
+    vendor/$(NXP_VENDOR_DIR)/nfc/hw/$(NXP_NFC_HW)/libnfc-nci.conf:vendor/etc/libnfc-nci.conf \
+    vendor/$(NXP_VENDOR_DIR)/nfc/hw/$(NXP_NFC_HW)/libnfc-nxp.conf:vendor/etc/libnfc-nxp.conf \
+# NFC packages
+PRODUCT_PACKAGES += \
+    libnfc-nci \
+    NfcNci \
+    android.hardware.nfc@1.0-impl \
+    libpn548ad_fw.so \
+    nfc_nci.$(NXP_NFC_PLATFORM)
+
+PRODUCT_PACKAGES += \
+    android.hardware.nfc@1.1-service
+
+ifeq ($(ENABLE_TREBLE), true)
+PRODUCT_PACKAGES += \
+	vendor.nxp.nxpnfc@1.0-impl \
+	vendor.nxp.nxpnfc@1.0-service
+endif
+
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.hardware.nfc_nci=$(NXP_NFC_PLATFORM)
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.product.first_api_level=23
+endif
 
 ifneq ($(wildcard kernel/msm-3.18),)
     TARGET_KERNEL_VERSION := 3.18
@@ -83,6 +121,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
            dalvik.vm.heapminfree=4m \
            dalvik.vm.heapstartsize=16m \
            vendor.vidc.disable.split.mode=1
+PRODUCT_PROPERTY_OVERRIDES += persist.vendor.ota.status=init
+
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, device/qcom/common/common64.mk)
 
@@ -104,16 +144,16 @@ PRODUCT_MODEL := MSCAM
 DEVICE_NAME   := MSCAM
 ifeq ($(PRODUCT_EXT_APK),lm)
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 11.0.5.05
+PRODUCT_VER    := 11.1.0.04
 else
-PRODUCT_VER    := 31.0.5.05
+PRODUCT_VER    := 31.1.0.04
 endif
 PRODUCT_EXT_APK := lm
 else
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 10.0.5.05
+PRODUCT_VER    := 10.1.0.04
 else
-PRODUCT_VER    := 30.0.5.05
+PRODUCT_VER    := 30.1.0.04
 endif
 PRODUCT_EXT_APK :=
 endif
@@ -140,17 +180,17 @@ PRODUCT_MODEL := SmarTab-8
 DEVICE_NAME   := SmarTab-8
 ifeq ($(TARGET_BUILD_VARIANT),user)
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 01.0.5.05
+PRODUCT_VER    := 01.1.0.04
 else
-PRODUCT_VER    := 21.0.5.05
+PRODUCT_VER    := 21.1.0.04
 endif
 PRODUCT_GMS_COMMON := true
 DISPLAY_BUILD_NUMBER := true
 else
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 00.0.5.05
+PRODUCT_VER    := 00.1.0.04
 else
-PRODUCT_VER    := 20.0.5.05
+PRODUCT_VER    := 20.1.0.04
 endif
 PRODUCT_GMS_COMMON ?= false
 endif
@@ -501,6 +541,8 @@ ifeq ($(strip $(TARGET_KERNEL_VERSION)), 3.18)
 endif
 
 PRODUCT_PACKAGES += populate_board_id.sh
+PRODUCT_PACKAGES += update.sh download.sh checkForUpdates.sh copyApp.sh updateResult.sh install.sh logCopy.sh get.sh
+PRODUCT_PACKAGES += cansend candump cancalbt start_can.sh set_can_bitrate.sh set_can_mode.sh set_can_masks.sh set_can_filters.sh
 ifneq ($(PRODUCT_BOARD_V), sb)
 PRODUCT_PACKAGES += iodriver recovery.iodriver
 endif
@@ -509,4 +551,4 @@ ifeq ($(PRODUCT_EXT_APK),lm)
 PRODUCT_PACKAGES += lm.smartcam.androidapp libLMLibEncDec libLMLibJni liblocee liblocee-jni 
 endif
 PRODUCT_PACKAGES += modemconfigapp
-PRODUCT_PACKAGES += bootanimation.zip
+

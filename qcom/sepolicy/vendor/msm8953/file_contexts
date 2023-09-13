@@ -92,6 +92,11 @@
 /dev/ttyHSL1                                			    u:object_r:serial_device_hs0:s0
 /sys/devices/platform/soc/soc:watchdogpin(/.*)?				    u:object_r:sysfs_gpwd:s0
 /(vendor|system/vendor)/bin/populate_board_id.sh      		    u:object_r:post_init_exec:s0
+/(vendor|system/vendor)/bin/start_can.sh      		    	    u:object_r:qti_init_shell_exec:s0
+/(vendor|system/vendor)/bin/set_can_bitrate.sh      		    u:object_r:qti_init_shell_exec:s0
+/(vendor|system/vendor)/bin/set_can_mode.sh      		    u:object_r:qti_init_shell_exec:s0
+/(vendor|system/vendor)/bin/set_can_masks.sh      		    u:object_r:qti_init_shell_exec:s0
+/(vendor|system/vendor)/bin/set_can_filters.sh      		    u:object_r:qti_init_shell_exec:s0
 
 /dev/ttyUSB0							    u:object_r:device_tty_mic:s0
 /dev/ttyUSB1							    u:object_r:device_tty_mic:s0

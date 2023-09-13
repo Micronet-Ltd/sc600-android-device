@@ -267,7 +267,8 @@ endif
 #----------------------------------------------------------------------
 # Generate CDROM image
 #----------------------------------------------------------------------
-CDROM_RES_FILE := $(TARGET_DEVICE_DIR)/cdrom_res
+#CDROM_RES_FILE := $(TARGET_DEVICE_DIR)/cdrom_res
+CDROM_RES_FILE :=
 CDROM_DUMMY_FILE := $(TARGET_DEVICE_DIR)/cdrom_res/zero.bin
 
 ifneq ($(wildcard $(CDROM_RES_FILE)),)
