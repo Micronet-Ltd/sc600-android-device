@@ -31,3 +31,10 @@ iodriver.boot_complete	   	u:object_r:iodriver_boot_complete:s0
 vib.set_profile	   		u:object_r:vib_set_profile:s0
 vib.get_profile	   		u:object_r:vib_get_profile:s0
 vendor.serialno	   		u:object_r:vendor_serialno:s0
+persist.vendor.ota.status  	u:object_r:persist_vendor_ota_status:s0
+vendor.can  			u:object_r:vendor_can:s0
+vendor.can.set_bitrate  	u:object_r:vendor_can_set_bitrate:s0
+vendor.can.set_op_mode  	u:object_r:vendor_can_set_op_mode:s0
+vendor.can.masks  		u:object_r:vendor_can_masks:s0
+vendor.can.filters  		u:object_r:vendor_can_filters:s0
+

@@ -1,0 +1,49 @@
+typeattribute dumpstate system_writes_vendor_properties_violators;
+#Permissions for file operations
+allow dumpstate storage_file:lnk_file { read };
+allow dumpstate mnt_user_file:dir { search };
+allow dumpstate mnt_user_file:lnk_file { read };
+allow dumpstate sdcardfs:dir { search write add_name remove_name};
+allow dumpstate sdcardfs:file { open write create read append getattr unlink };
+allow dumpstate media_rw_data_file:file { open write read create getattr append unlink };
+allow dumpstate media_rw_data_file:dir { search read open write add_name remove_name };
+
+#for setting system property
+#allow dumpstate property_socket:sock_file { write };
+#allow dumpstate init:unix_stream_socket { connectto };
+#allow dumpstate vendor_default_prop:property_service { set };
+get_prop(dumpstate, persist_vendor_ota_status);
+set_prop(dumpstate, persist_vendor_ota_status);
+set_prop(dumpstate, ctl_stop_prop);
+
+
+#for Network!
+allow dumpstate self:udp_socket { create };
+allow dumpstate dnsproxyd_socket:sock_file { write };
+allow dumpstate self:capability { net_raw };
+allow dumpstate netd:unix_stream_socket { connectto };
+allow dumpstate self:tcp_socket { create setopt connect getopt getattr write read };
+allow dumpstate fwmarkd_socket:sock_file { write };
+allow dumpstate port:tcp_socket { name_connect };
+
+#for sending intents
+allow dumpstate activity_service:service_manager { find };
+
+#for IMEI
+allow dumpstate package_service:service_manager { find };
+allow dumpstate radio_service:service_manager { find };
+allow dumpstate radio:binder { call };
+
+#for setting logging properties
+#allow dumpstate logpersistd_logging_prop:property_service { set };
+set_prop(dumpstate, logpersistd_logging_prop);
+
+#Execute
+allow dumpstate self:netlink_selinux_socket { create bind };
+allow dumpstate selinuxfs:file { read open write };
+allow dumpstate selinuxfs:dir { read open };
+allow dumpstate kernel:security { compute_av };
+
+#Copy files from data/data/ folder
+#allow dumpstate app_data_file:dir { search read open };
+#allow dumpstate app_data_file:file { read open getattr };

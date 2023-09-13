@@ -1,0 +1,8 @@
+allow netd install_recovery:fd { use };
+allow netd install_recovery:tcp_socket { read write setopt getopt };
+
+allow netd installd:fd { use };
+allow netd installd:tcp_socket { read write setopt getopt };
+
+allow netd dumpstate:fd { use };
+allow netd dumpstate:tcp_socket { read write setopt getopt };

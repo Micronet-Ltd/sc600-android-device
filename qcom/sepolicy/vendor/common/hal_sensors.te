@@ -66,4 +66,5 @@ allow hal_sensors_default qvrd:fd use;
 allow hal_sensors_default sysfs_leds:dir search;
 allow hal_sensors_default sysfs_graphics:dir search;
 allow hal_sensors_default sysfs_graphics:file { open read };
-
+allow hal_sensors_default proc_board_id:dir search;
+allow hal_sensors_default proc_board_id:file { open read };

@@ -29,7 +29,13 @@
 type vendor_media_msm8953_version_prop, property_type;
 type hw_board_id, property_type;
 type iodriver_boot_complete, property_type;
+type vendor_can, property_type;
+type vendor_can_set_bitrate, property_type;
+type vendor_can_set_op_mode, property_type;
+type vendor_can_masks, property_type;
+type vendor_can_filters, property_type;
 type vendor_serialno, property_type;
 type vib_set_profile, property_type;
 type vib_get_profile, property_type;
+type persist_vendor_ota_status, property_type;
 

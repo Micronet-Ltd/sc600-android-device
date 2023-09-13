@@ -1,0 +1,43 @@
+typeattribute installd system_writes_vendor_properties_violators;
+allow installd shell_exec:file { getattr read open execute};
+allow installd storage_file:lnk_file { read };
+allow installd mnt_user_file:dir { search };
+allow installd mnt_user_file:lnk_file { read };
+allow installd sdcardfs:file { open read write append create setattr rename };
+allow installd sdcardfs:dir { add_name create };
+allow installd media_rw_data_file:file { read open append create rename write };
+allow installd system_file:file { execute_no_trans };
+allow installd self:netlink_selinux_socket { create bind };
+allow installd kernel:security { compute_av };
+allow installd package_service:service_manager { find };
+allow installd activity_service:service_manager { find };
+
+#for copy.sh and updateResult.sh
+allow installd storage_file:dir { getattr read open };
+allow installd cache_file:dir { getattr search write add_name remove_name unlink };
+allow installd cache_file:file { getattr create read write open setattr unlink };
+allow installd vfat:dir { search read open write add_name remove_name create };
+allow installd vfat:file { create read open write setattr getattr rename unlink };
+
+#for setting properties
+#allow installd property_socket:sock_file { write };
+#allow installd init:unix_stream_socket { connectto };
+#allow installd vendor_default_prop:property_service { set };
+set_prop(installd, persist_vendor_ota_status);
+get_prop(installd, persist_vendor_ota_status);
+
+#For getting System Version
+allow installd proc_version:file { read open };
+
+#for reset
+#allow installd powerctl_prop:property_service { set };
+set_prop(installd, powerctl_prop)
+
+#for Download!
+allow installd self:udp_socket { create };
+allow installd dnsproxyd_socket:sock_file { write };
+allow installd self:capability { net_raw };
+allow installd netd:unix_stream_socket { connectto };
+allow installd self:tcp_socket { create setopt connect getopt getattr write read };
+allow installd fwmarkd_socket:sock_file { write };
+allow installd port:tcp_socket { name_connect };

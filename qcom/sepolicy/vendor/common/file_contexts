@@ -15,6 +15,7 @@
 /dev/usf1                                       u:object_r:usf_device:s0
 /dev/msm_dsps                                   u:object_r:sensors_device:s0
 /dev/msm_thermal_query                          u:object_r:thermal_device:s0
+/dev/pn54x             u:object_r:nfc_device:s0
 /dev/nfc-nci                                    u:object_r:nfc_device:s0
 /dev/nq-nci                                     u:object_r:nfc_device:s0
 /dev/qseecom                                    u:object_r:tee_device:s0
@@ -399,7 +400,7 @@
 /sys/devices/virtual/smdpkt/smdcntl1[0-9]/open_timeout              u:object_r:sysfs_smd_open_timeout:s0
 /sys/devices/virtual/smdpkt/smdcntl[0-9]/open_timeout               u:object_r:sysfs_smd_open_timeout:s0
 /sys/devices/virtual/thermal(/.*)?                                  u:object_r:sysfs_thermal:s0
-/sys/devices/virtual/switch(/.*)?                                   u:object_r:sysfs_switch_dock:s0
+/sys/devices/virtual/switch_dock(/.*)?                                   u:object_r:sysfs_switch_dock:s0
 /sys/module/msm_serial_hs/parameters/debug_mask                     u:object_r:sysfs_msmuart_file:s0
 /sys/module/msm_thermal(/.*)?                                       u:object_r:sysfs_thermal:s0
 /sys/module/msm_thermal/core_control/cpus_offlined                  u:object_r:sysfs_mpdecision:s0

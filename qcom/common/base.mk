@@ -703,7 +703,7 @@ NQ_NFC += com.android.nfc_extras
 NQ_NFC += vendor.nxp.hardware.nfc@1.1-service
 NQ_NFC += nfc_nci.nqx.default.hw
 NQ_NFC += nfc_nci.sn100.default.hw
-PRODUCT_PROPERTY_OVERRIDES += ro.hardware.nfc_nci=nqx.default
+#PRODUCT_PROPERTY_OVERRIDES += ro.hardware.nfc_nci=nqx.default
 
 #OPENCORE
 OPENCORE := libomx_aacdec_sharedlibrary
