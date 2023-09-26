@@ -9,7 +9,7 @@ writeLog()
 
 getDeviceVersion()
 {
-echo $(getprop ro.build.display.id | cut -d '.' -f 4- | cut -d ' ' -f 1)
+echo $(getprop ro.build.display.id | cut -d '.' -f 2- | cut -d ' ' -f 1)
 return
 }
 
@@ -197,7 +197,7 @@ writeLog "got version $deviceVersion"
 while true
 	do
 		export imeiNum=$( service call iphonesubinfo 1 | cut -c 52-66 | tr -d '.[:space:]' )
-		if [[ ${%imeiNum} -eq 15 ]] && [[ $imeiNum == 35540978* ]]
+		if [[ ${%imeiNum} -eq 15 ]] && [[ $imeiNum == 35595011* ]]
 			then
 				echo $imeiNum > /sdcard/Download/imei.txt
 				break
