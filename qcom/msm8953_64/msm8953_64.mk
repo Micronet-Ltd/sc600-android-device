@@ -144,16 +144,16 @@ PRODUCT_MODEL := MSCAM
 DEVICE_NAME   := MSCAM
 ifeq ($(PRODUCT_EXT_APK),lm)
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 11.1.2.00
+PRODUCT_VER    := 11.1.3.00
 else
-PRODUCT_VER    := 31.1.2.00
+PRODUCT_VER    := 31.1.3.00
 endif
 PRODUCT_EXT_APK := lm
 else
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 10.1.2.00
+PRODUCT_VER    := 10.1.3.00
 else
-PRODUCT_VER    := 30.1.2.00
+PRODUCT_VER    := 30.1.3.00
 endif
 PRODUCT_EXT_APK :=
 endif
@@ -180,17 +180,17 @@ PRODUCT_MODEL := SmarTab-8
 DEVICE_NAME   := SmarTab-8
 ifeq ($(TARGET_BUILD_VARIANT),user)
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 01.1.2.00
+PRODUCT_VER    := 01.1.3.00
 else
-PRODUCT_VER    := 21.1.2.00
+PRODUCT_VER    := 21.1.3.00
 endif
 PRODUCT_GMS_COMMON := true
 DISPLAY_BUILD_NUMBER := true
 else
 ifeq ($(PRODUCT_RB_OTA), enabled)
-PRODUCT_VER    := 00.1.2.00
+PRODUCT_VER    := 00.1.3.00
 else
-PRODUCT_VER    := 20.1.2.00
+PRODUCT_VER    := 20.1.3.00
 endif
 PRODUCT_GMS_COMMON ?= false
 endif
@@ -550,5 +550,5 @@ endif
 ifeq ($(PRODUCT_EXT_APK),lm)
 PRODUCT_PACKAGES += lm.smartcam.androidapp libLMLibEncDec libLMLibJni liblocee liblocee-jni 
 endif
-PRODUCT_PACKAGES += modemconfigapp
+#PRODUCT_PACKAGES += modemconfigapp
 
