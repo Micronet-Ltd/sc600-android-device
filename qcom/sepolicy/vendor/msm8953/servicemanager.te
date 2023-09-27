@@ -1,3 +1,4 @@
 allow servicemanager install_recovery:dir { search };
 allow servicemanager install_recovery:dir { open read };
- 
+allow servicemanager install_recovery:file { read open }; 
+allow servicemanager install_recovery:process { getattr };
