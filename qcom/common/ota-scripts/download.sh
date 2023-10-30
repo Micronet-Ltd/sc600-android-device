@@ -40,14 +40,19 @@ testForUpdateFiles()
 rm -f /cache/result
 sdcardName=$(ls /storage/ | grep -)
 sdcardPath=/storage/$sdcardName
-if [[ -f /cache/msm8937_32-incremental-ota.zip ]]
+if [[ -f /cache/msm8953_64-incremental-ota.zip ]]
 then
 return
 fi
 
 if [[ -n $sdcardName ]]
 	then
-		if [[ -f $sdcardPath/msm8937_32-incremental-ota.zip ]]
+		if [[ -f $sdcardPath/msm8953_64-incremental-ota.zip ]]
+		then
+		return
+		fi
+		
+		if [[ -f $sdcardPath/Android/data/com.redbend.client/files/msm8953_64-ota-eng.micronet.zip ]]
 		then
 		return
 		fi
@@ -193,6 +198,11 @@ downloadPackage()
 													writeLog "tar code - $exitCode"
 													if [[ $exitCode -eq 0 ]]
 														then
+															if [[ -f /$sdcardPath/msm8953_64-ota-eng.micronet.zip ]]
+																then
+																	mkdir -p /$sdcardPath/Android/data/com.redbend.client/files/
+																	mv -f /$sdcardPath/msm8953_64-ota-eng.micronet.zip /$sdcardPath/Android/data/com.redbend.client/files/
+															fi
 															updateStatus "{\"deviceId\": \"$imeiNum\",\"campaignId\": $CampaignID,\"campaignType\": 1,\"state\": 8}"
 															preRebootTest=$(testForUpdateFiles)
 															if [[ $preRebootTest -eq 1 ]]

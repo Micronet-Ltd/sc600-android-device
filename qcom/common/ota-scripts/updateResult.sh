@@ -80,10 +80,11 @@ fi
 sdcardName=$(ls /storage/ | grep -)
 sdcardPath=/storage/$sdcardName
 rm /cache/result
-rm /cache/msm8937_32-incremental-ota.zip
+rm /cache/msm8953_64-incremental-ota.zip
 if [[ -n $sdcardName ]]
 	then
-		rm $sdcardPath/msm8937_32-incremental-ota.zip
+		rm $sdcardPath/msm8953_64-incremental-ota.zip
+		rm $sdcardPath/Android/data/com.redbend.client/files/msm8953_64-ota-eng.micronet.zip
 fi
 
 status=$(getprop persist.vendor.ota.status)
