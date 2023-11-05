@@ -155,7 +155,7 @@ downloadPackage()
 						then
 							if [[ -n $sdcardName ]]
 								then
-									sdFreeSpace=$(df /mnt/media_rw/$sdcardName | tail -1 | awk '{print $4}')
+									sdFreeSpace=$(df | grep /mnt/media_rw/$sdcardName | tail -1 | awk '{print $4}')
 									if [[ $sdFreeSpace -lt $sizeNeeded ]]
 										then
 											writeLog "Not enough Space!"
