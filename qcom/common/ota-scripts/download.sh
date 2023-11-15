@@ -32,7 +32,7 @@ return
 
 getDeviceVersion()
 {
-echo $(getprop ro.build.display.id | cut -d '.' -f 4- | cut -d ' ' -f 1)
+echo $(getprop ro.build.display.id | cut -d '.' -f 2- | cut -d ' ' -f 1)
 }
 
 testForUpdateFiles()
