@@ -32,7 +32,7 @@ return
 
 getDeviceVersion()
 {
-echo $(getprop ro.build.display.id | cut -d '.' -f 4- | cut -d ' ' -f 1)
+echo $(getprop ro.build.display.id | cut -d '.' -f 2- | cut -d ' ' -f 1)
 }
 
 testForUpdateFiles()
@@ -155,7 +155,7 @@ downloadPackage()
 						then
 							if [[ -n $sdcardName ]]
 								then
-									sdFreeSpace=$(df /mnt/media_rw/$sdcardName | tail -1 | awk '{print $4}')
+									sdFreeSpace=$(df | grep /mnt/media_rw/$sdcardName | tail -1 | awk '{print $4}')
 									if [[ $sdFreeSpace -lt $sizeNeeded ]]
 										then
 											writeLog "Not enough Space!"
@@ -351,6 +351,7 @@ downloadPackage()
 				else
 					writeLog "Source And Device Versions Mismatch: $SourceVersion and $deviceVersion"
 					am broadcast -a com.micronet.ota.status --es status "Source And Device Versions Mismatch: $SourceVersion and $deviceVersion" --ez chk true --ez dnl false --ez inst false > /dev/null
+					updateStatus "{\"deviceId\": \"$imeiNum\",\"campaignId\": $CampaignID,\"campaignType\": 1,\"state\": 4, \"errorCode\": 1,\"errorDesc\":\"Source And Device Versions Mismatch: $SourceVersion and $deviceVersion\"}"
 					if [[ "$status" == "download" ]]
 						then
 							sleep $interval
